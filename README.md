@@ -1,2 +1,2 @@
-# nopAPIExample
-NOP Commerce Unofficial API usage with Xamarin
+# [NOP E-Commerce](http://www.nopcommerce.com/) Unofficial API usage with Xamarin (Android & WP)
+
