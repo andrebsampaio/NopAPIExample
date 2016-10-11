@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="ApplicationName">NopMobile.Android</string>
+	<string name="nopAdminLogin">Nop Admin Login</string>
+	<string name="addNoteToOrder">Add note to order</string>
+	<string name="addNote">Add Note</string>
+	<string name="login">Login</string>
+	<string name="searchOrders">Search Orders</string>
+	<string name="saveStore">Save Store</string>
+	<string name="stayConnected">Stay Connected</string>
+	<string name="http">http://</string>
+	<string name="loginWithNewStore">Login with new store</string>
+</resources>

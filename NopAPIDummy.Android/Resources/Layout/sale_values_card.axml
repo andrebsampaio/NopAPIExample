@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:descendantFocusability="beforeDescendants">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_card_background"
+        android:descendantFocusability="afterDescendants">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/blue_gradient_rect" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:gravity="center_vertical">
+            <ImageView
+                android:src="@drawable/ic_sale_values"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/valuesicon" />
+            <TextView
+                android:id="@+id/sale"
+                android:text="Sale Values"
+                android:layout_toRightOf="@id/valuesicon"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/lightgray"
+                android:paddingLeft="3dp"
+                android:textStyle="bold"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/pendingtitle"
+                android:text="Pending: "
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/pending"
+                android:text="Loading..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/completetitle"
+                android:text="Complete: "
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/complete"
+                android:text="Loading..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/cancelledtitle"
+                android:text="Cancelled: "
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/cancelled"
+                android:text="Loading..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/blue_rounded_textview"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="3dp"
+            android:gravity="right"
+            android:clickable="true"
+            android:id="@+id/salevaluesgo"
+            android:layout_alignParentBottom="true">
+            <TextView
+                android:id="@+id/text3"
+                android:text="Complete Report"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:drawableRight="@drawable/ic_action_navigation_next_item"
+                android:gravity="center_vertical"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

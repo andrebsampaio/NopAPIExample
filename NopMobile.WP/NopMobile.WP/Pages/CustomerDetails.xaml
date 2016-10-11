@@ -1,0 +1,91 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="NopMobile.WP.CustomerDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <phone:Pivot Title="CUSTOMER DETAILS">
+            <!--Pivot item one-->
+            <phone:PivotItem Header="overview">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Margin="15,0,0,10" Text="Customer Info" Style="{StaticResource PhoneTextTitle2Style}"/>
+                        <StackPanel  Margin="15,0,0,0" Orientation="Horizontal" VerticalAlignment="Top">
+                            <StackPanel Margin="0,0,10,0" Width="150" Height="150">
+                                <StackPanel Margin="0,105,0,0" Background="#33000000" Height="45">
+                                    <TextBlock FontWeight="Bold" x:Name="Status" Text="Loading.." HorizontalAlignment="Center" Style="{StaticResource PhoneTextTitle2Style}" />
+                                </StackPanel>
+                                <StackPanel.Background>
+                                    <ImageBrush ImageSource="/../Images/customer.jpg" />
+                                </StackPanel.Background>
+                  
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Name: "/>
+                                    <TextBlock x:Name="Name" Text="Loading.."/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Email: "/>
+                                    <TextBlock x:Name="Email" Text="Loading.."/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Gender: "/>
+                                    <TextBlock x:Name="Gender" Text="Loading.."/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Birthday: "/>
+                                    <TextBlock x:Name="Birthday" Text="Loading.."/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Company: "/>
+                                    <TextBlock x:Name="Company" Text="Loading.."/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="15,0,0,0">
+                            <TextBlock Margin="0,10,0,10" Text="Store Related Info" Style="{StaticResource PhoneTextTitle2Style}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontWeight="Bold" Text="Roles: "/>
+                                <TextBlock x:Name="Roles" Text="Loading.."/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontWeight="Bold" Text="Last Activity: "/>
+                                <TextBlock x:Name="LastActivity" Text="Loading.."/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="15,0,0,0">
+                            <TextBlock Margin="0,10,0,10" Text="Admin Comments" Style="{StaticResource PhoneTextTitle2Style}" />
+                            <StackPanel x:Name="Comments" Orientation="Vertical" />
+                            <Button x:Name="AddComment" Content="Add Comment" Click="AddComment_Click"/>
+                        </StackPanel>
+                        <StackPanel Margin="15,0,0,0">
+                            <TextBlock Margin="0,10,0,10" Text="Addresses" Style="{StaticResource PhoneTextTitle2Style}" />
+                            <toolkit:WrapPanel x:Name="Addresses" Orientation="Vertical" />
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </phone:PivotItem>
+            <phone:PivotItem Header="cart">
+                <ListBox x:Name="Cart" ItemTemplate="{StaticResource ProdOrderTemplate}"/>
+            </phone:PivotItem>
+            <phone:PivotItem Header="wishlist">
+                <ListBox x:Name="Wishlist" ItemTemplate="{StaticResource ProdOrderTemplate}"/>
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+    
+</phone:PhoneApplicationPage>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#F3F3F3"
+    android:weightSum="1">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:id="@+id/orderstatusindicator"
+        android:layout_height="match_parent"
+        android:layout_weight="0.05" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="8dp"
+        android:layout_weight="0.25">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/orderidtitle"
+            android:text="ID: "
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#858585"
+            android:gravity="center_vertical" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=" 32"
+            android:singleLine="true"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:textSize="16sp"
+            android:textColor="#858585"
+            android:id="@+id/orderid"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:padding="8dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#858585"
+            android:singleLine="true"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:id="@+id/orderproducts" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:textColor="#858585"
+            android:id="@+id/orderemail" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:padding="8dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.1">
+        <ImageView
+            android:src="@drawable/ic_navigation_next_item_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/goarrow" />
+    </LinearLayout>
+</LinearLayout>

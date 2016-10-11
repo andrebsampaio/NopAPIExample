@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Customer the theme applied to the application or activity -->
+  <style name="CustomerSearchBar"
+         parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:actionBarStyle">@style/MyActionBar</item>
+
+    <!-- Support library compatibility -->
+    <item name="actionBarStyle">@style/MyActionBar</item>
+  </style>
+
+  <!-- ActionBar styles -->
+  <style name="MyActionBar"
+         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background">@color/orange</item>
+
+    <!-- Support library compatibility -->
+    <item name="background">@color/orange</item>
+  </style>
+  <!-- End Customer theme -->
+  
+  <!-- Orders the theme applied to the application or activity -->
+  <style name="OrderSearchBar"
+         parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:actionBarStyle">@style/OrderActionBar</item>
+
+    <!-- Support library compatibility -->
+    <item name="actionBarStyle">@style/OrderActionBar</item>
+  </style>
+
+  <!-- ActionBar styles -->
+  <style name="OrderActionBar"
+         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background">@color/green</item>
+
+    <!-- Support library compatibility -->
+    <item name="background">@color/green</item>
+  </style>
+  <!-- End Orders theme -->
+  
+  <!-- MiscStats the theme applied to the application or activity -->
+  <style name="MiscStatsBar"
+         parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:actionBarStyle">@style/MiscStatsActionBar</item>
+
+    <!-- Support library compatibility -->
+    <item name="actionBarStyle">@style/MiscStatsActionBar</item>
+  </style>
+
+  <!-- ActionBar styles -->
+  <style name="MiscStatsActionBar"
+         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background">@color/red</item>
+
+    <!-- Support library compatibility -->
+    <item name="background">@color/red</item>
+  </style>
+  <!-- End MiscStats theme -->
+
+  <!-- SaleValues the theme applied to the application or activity -->
+  <style name="SaleValuesBar"
+         parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:actionBarStyle">@style/SaleValuesActionBar</item>
+
+    <!-- Support library compatibility -->
+    <item name="actionBarStyle">@style/SaleValuesActionBar</item>
+  </style>
+
+  <!-- ActionBar styles -->
+  <style name="SaleValuesActionBar"
+         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background">@color/blue</item>
+
+    <!-- Support library compatibility -->
+    <item name="background">@color/blue</item>
+  </style>
+  <!-- End SaleValues theme -->
+
+  <!-- Carts the theme applied to the application or activity -->
+  <style name="CartsBar"
+         parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:actionBarStyle">@style/CartsActionBar</item>
+
+    <!-- Support library compatibility -->
+    <item name="actionBarStyle">@style/CartsActionBar</item>
+  </style>
+
+  <!-- ActionBar styles -->
+  <style name="CartsActionBar"
+         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background">@color/purple</item>
+
+    <!-- Support library compatibility -->
+    <item name="background">@color/purple</item>
+  </style>
+  <!-- End Carts theme -->
+
+
+  <!-- LoginAssociate the theme applied to the application or activity -->
+  <style name="LoginBar"
+         parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:actionBarStyle">@style/LoginActionBar</item>
+
+    <!-- Support library compatibility -->
+    <item name="actionBarStyle">@style/LoginActionBar</item>
+  </style>
+
+  <!-- ActionBar styles -->
+  <style name="LoginActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background">@drawable/purple_actionbar</item>
+    <item name="android:titleTextStyle">@style/ActionBarTitle</item>
+    <item name="titleTextStyle">@style/ActionBarTitle</item>
+
+    <!-- Support library compatibility -->
+    <item name="background">@drawable/purple_actionbar</item>
+    
+  </style>
+
+  <style name="ActionBarTitle" parent="@android:style/TextAppearance.Medium">
+    <item name="android:textColor">@color/white</item>
+  </style>
+  <!-- End LoginAssociate theme -->
+
+  <!-- Dashboard the theme applied to the application or activity -->
+  <style name="DashboardBar"
+         parent="@style/Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:actionBarStyle">@style/DashboardActionBar</item>
+    <item name="android:homeAsUpIndicator">@drawable/ic_navigation_drawer</item>
+    
+    <!-- Support library compatibility -->
+    <item name="homeAsUpIndicator">@drawable/ic_navigation_drawer</item>
+    <item name="actionBarStyle">@style/DashboardActionBar</item>
+  </style>
+
+  <!-- ActionBar styles -->
+  <style name="DashboardActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background">@drawable/purple_actionbar</item>
+    <item name="android:titleTextStyle">@style/ActionBarTitle</item>
+    <item name="titleTextStyle">@style/ActionBarTitle</item>
+    <!-- Support library compatibility -->
+    
+    <item name="background">@drawable/purple_actionbar</item>
+
+  </style>
+
+  <style name="ActionBarTitle" parent="@android:style/TextAppearance.Medium">
+    <item name="android:textColor">@color/white</item>
+  </style>
+  <!-- End Dashboard theme -->
+</resources>

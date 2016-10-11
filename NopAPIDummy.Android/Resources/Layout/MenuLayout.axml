@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="fill_parent"
+    android:background="@color/darkpurple"
+    android:id="@+id/FlyOutMenu"
+    android:padding="4dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_margin="8dp">
+        <TextView
+            android:text="Store Name"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            android:layout_width="fill_parent"
+            android:layout_height="40sp"
+            android:includeFontPadding="false"
+            android:id="@+id/storename"
+            android:textColor="#ffffff"
+            android:paddingTop="4dp"
+            android:paddingRight="4dp" />
+        <TextView
+            android:text="Andre Sampaio"
+            android:textStyle="italic"
+            android:textSize="20sp"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/welcomebackname"
+            android:textColor="#ffffff"
+            android:paddingRight="4dp"
+            android:paddingBottom="8dp" />
+        <ListView
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sidemenuoptions" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_margin="8dp">
+        <TextView
+            android:text="My Stores"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mystores"
+            android:textColor="#ffffff"
+            android:paddingTop="4dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="4dp" />
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mystoreslist" />
+    </LinearLayout>
+</LinearLayout>

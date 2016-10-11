@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:background="@color/palegray">
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView1" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/rounded_focused"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/storedrop" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/storeurlholder">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:text="@string/http"
+            android:gravity="center"
+            android:background="@drawable/http_hint"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_height="match_parent"
+            android:id="@+id/http" />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="wrap_content"
+            android:id="@+id/siteurl"
+            android:textColor="@color/textboxtext"
+            android:textColorHint="@color/hinttext"
+            android:textCursorDrawable="@null"
+            android:singleLine="true"
+            android:background="@drawable/store_url_edittext"
+            android:scrollHorizontally="true"
+            android:autoText="false"
+            android:inputType="textPersonName"
+            android:hint="Website URL"
+            android:padding="10dp" />
+    </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:textColorHint="@color/hinttext"
+        android:textCursorDrawable="@null"
+        android:textColor="@color/textboxtext"
+        android:padding="10dp"
+        android:background="@drawable/rounded_edittext_states"
+        android:singleLine="true"
+        android:scrollHorizontally="true"
+        android:inputType="textPersonName"
+        android:hint="Email"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:hint="●●●●●●●●"
+        android:textCursorDrawable="@null"
+        android:textColorHint="@color/hinttext"
+        android:textColor="@color/textboxtext"
+        android:background="@drawable/rounded_edittext_states"
+        android:singleLine="true"
+        android:padding="10dp"
+        android:scrollHorizontally="true"
+        android:autoText="false"
+        android:password="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp" />
+    <Button
+        android:text="@string/login"
+        android:id="@+id/login"
+        android:background="@drawable/round_button_purple"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center" />
+    <Button
+        android:text="@string/loginWithNewStore"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/loginwithnew"
+        android:background="@drawable/round_button_blue" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:id="@+id/errorMessage"
+        android:gravity="center" />
+    <CheckBox
+        android:text="@string/saveStore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/purple"
+        android:id="@+id/saveUrl" />
+    <CheckBox
+        android:text="@string/stayConnected"
+        android:layout_width="match_parent"
+        android:textColor="@color/purple"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:id="@+id/stayConnected" />
+</LinearLayout>

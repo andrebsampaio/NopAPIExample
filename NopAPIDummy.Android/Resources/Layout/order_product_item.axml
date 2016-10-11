@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:background="#ffffff"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:layout_height="48dp"
+    android:weightSum="1">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="0.6"
+        android:paddingLeft="2dp"
+        android:gravity="center_vertical"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Product"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:lines="1"
+            android:textColor="#858585"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:id="@+id/orderdetailsproduct" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="0.4"
+        android:gravity="center"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:textColor="#858585"
+                android:id="@+id/orderdetailsquantitytitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="16sp"
+                android:singleLine="true"
+                android:textColor="#858585"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:id="@+id/orderdetailsquantity" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total: "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:lines="1"
+                android:textColor="#858585"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:id="@+id/orderdetailstotaltitle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="300$"
+                android:textSize="16sp"
+                android:textColor="#858585"
+                android:singleLine="true"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:id="@+id/orderdetailstotal" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#000000"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/note"
+        android:padding="15dp"
+        android:background="#FFFFFF"
+        android:textColor="@color/darkgray"
+        android:layout_marginBottom="0.0dp"
+        android:hint="Your Note Goes Here"
+        android:lines="5" />
+    <Button
+        android:text="@string/addNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkgreen"
+        android:id="@+id/applyButton" />
+</LinearLayout>

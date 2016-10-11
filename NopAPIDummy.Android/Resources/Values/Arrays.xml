@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array
+      name="side_menu_options">
+    <item>Associate New Store</item>
+    <item>Current Shopping Carts</item>
+    <item>Configurations</item>
+    <item>Logout</item>
+    <item>Help</item>
+  </string-array>
+
+    <string-array name="options_icons">
+      <item>@drawable/ic_store</item>
+      <item>@drawable/ic_current_cart</item>
+      <item>@drawable/ic_config</item>
+      <item>@drawable/ic_exit</item>
+      <item>@drawable/ic_help</item>
+    </string-array>
+
+</resources>

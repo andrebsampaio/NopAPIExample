@@ -1,0 +1,1788 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="NopService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GetPaymentMethod">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPaymentMethodResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetPaymentMethodResult">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element ref="xs:schema" />
+                  <xs:any />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CheckLogin">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CheckLoginResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetUserName">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserNameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetUserNameResult" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOrders">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="storeId" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="vendorId" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="customerId" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="productId" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="affiliateId" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="os" nillable="true" type="tns:OrderStatus" />
+            <xs:element minOccurs="1" maxOccurs="1" name="ps" nillable="true" type="tns:PaymentStatus" />
+            <xs:element minOccurs="1" maxOccurs="1" name="ss" nillable="true" type="tns:ShippingStatus" />
+            <xs:element minOccurs="0" maxOccurs="1" name="billingEmail" type="xs:string" />
+            <xs:element minOccurs="1" maxOccurs="1" name="pageIndex" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="pageSize" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:simpleType name="OrderStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Pending" />
+          <xs:enumeration value="Processing" />
+          <xs:enumeration value="Complete" />
+          <xs:enumeration value="Cancelled" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="PaymentStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Pending" />
+          <xs:enumeration value="Authorized" />
+          <xs:enumeration value="Paid" />
+          <xs:enumeration value="PartiallyRefunded" />
+          <xs:enumeration value="Refunded" />
+          <xs:enumeration value="Voided" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ShippingStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ShippingNotRequired" />
+          <xs:enumeration value="NotYetShipped" />
+          <xs:enumeration value="PartiallyShipped" />
+          <xs:enumeration value="Shipped" />
+          <xs:enumeration value="Delivered" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="GetOrdersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetOrdersResult" type="tns:ArrayOfOrderDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ArrayOfOrderDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderDTO" nillable="true" type="tns:OrderDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OrderDTO">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="OrderID" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CreateDate" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="OrderStatus" type="tns:OrderStatus" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PayStatus" type="tns:PaymentStatus" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OrderEmail" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ProductsList" type="tns:ArrayOfOrderItemDTO" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ShippingStatus" type="tns:ShippingStatus" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfOrderItemDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderItemDTO" nillable="true" type="tns:OrderItemDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OrderItemDTO">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="OrderId" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ProductId" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Product" type="tns:ProductDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProductDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Price" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetOrderById">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="id" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOrderByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetOrderByIdResult" type="tns:OrderDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomerList">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetCustomerListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCustomerListResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ArrayOfCustomerDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerDTO" nillable="true" type="tns:CustomerDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CustomerDTO">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Username" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Email" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AdminComment" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Phone" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FullName" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsAdmin" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ShoppingCart" type="tns:ArrayOfCartItemDTO" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Active" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Company" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Gender" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Activity" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Birthday" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Addresses" type="tns:ArrayOfString" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Wishlist" type="tns:ArrayOfCartItemDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfCartItemDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CartItemDTO" nillable="true" type="tns:CartItemDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CartItemDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Product" type="tns:ProductDTO" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Quantity" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfString">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetPendingTotal">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetPendingTotalResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetPendingTotalResult" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="EndSession">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="EndSessionResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetCompleteTotal">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetCompleteTotalResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetCompleteTotalResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCancelledTotal">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetCancelledTotalResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetCancelledTotalResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetStoreName">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetStoreNameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetStoreNameResult" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRegisteredUsersCountByTime">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="days" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRegisteredUsersCountByTimeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetRegisteredUsersCountByTimeResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTotalSalesByTime">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="days" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTotalSalesByTimeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetTotalSalesByTimeResult" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTotalPendingByReason">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="reason" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTotalPendingByReasonResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetTotalPendingByReasonResult" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPendingOrdersCount">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetPendingOrdersCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetPendingOrdersCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCurrentCartsCount">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetCurrentCartsCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetCurrentCartsCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetWishlistCount">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetWishlistCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetWishlistCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOnlineCount">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetOnlineCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetOnlineCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRegisteredCustomersCount">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetRegisteredCustomersCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetRegisteredCustomersCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetVendorsCount">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetVendorsCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetVendorsCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPopularKeywords">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="KeywordNumber" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPopularKeywordsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetPopularKeywordsResult" type="tns:ArrayOfString" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBestsellersByAmount">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetBestsellersByAmountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetBestsellersByAmountResult" type="tns:ArrayOfString" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBestsellersByQuantity">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetBestsellersByQuantityResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetBestsellersByQuantityResult" type="tns:ArrayOfString" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCurrency">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetCurrencyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCurrencyResult" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByEmail">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Email" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByEmailResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCustomersByEmailResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByUsername">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Username" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByUsernameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCustomersByUsernameResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByFirstname">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Firstname" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByFirstnameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCustomersByFirstnameResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByLastname">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Lastname" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByLastnameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCustomersByLastnameResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByFullname">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Fullname" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByFullnameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCustomersByFullnameResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByCompany">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Company" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByCompanyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCustomersByCompanyResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByPhone">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Phone" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByPhoneResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCustomersByPhoneResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByPostalCode">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="PostalCode" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByPostalCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCustomersByPostalCodeResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCurrentCarts">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Filter" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Email" type="xs:string" />
+            <xs:element minOccurs="1" maxOccurs="1" name="LowerItems" nillable="true" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="HigherItems" nillable="true" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="LowerTotal" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="1" maxOccurs="1" name="HigherTotal" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="1" maxOccurs="1" name="Abandoned" nillable="true" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCurrentCartsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCurrentCartsResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBestCustomers">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetBestCustomersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetBestCustomersResult" type="tns:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExecuteDataSet">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="sqlStatements" type="tns:ArrayOfString" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExecuteDataSetResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ExecuteDataSetResult">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element ref="xs:schema" />
+                  <xs:any />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExecuteNonQuery">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="sqlStatement" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExecuteNonQueryResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="ExecuteScalar">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="sqlStatement" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExecuteScalarResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ExecuteScalarResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteOrders">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ordersId" type="tns:ArrayOfInt" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ArrayOfInt">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OrderError">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="OrderId" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfOrderError">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderError" nillable="true" type="tns:OrderError" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DeleteOrdersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="DeleteOrdersResult" type="tns:ArrayOfOrderError" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteOrdersWithoutUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ordersId" type="tns:ArrayOfInt" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteOrdersWithoutUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="DeleteOrdersWithoutUserResult" type="tns:ArrayOfOrderError" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeOrderStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="id" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="status" type="tns:OrderStatus" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeOrderStatusResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="ChangePaymentStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="id" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="status" type="tns:PaymentStatus" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangePaymentStatusResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="ChangeShippingStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="id" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="status" type="tns:ShippingStatus" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeShippingStatusResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="AddCommentToCustomer">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="email" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="comment" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddCommentToCustomerResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="AddOrderNote">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" maxOccurs="1" name="note" type="xs:string" />
+            <xs:element minOccurs="1" maxOccurs="1" name="displayToCustomer" type="xs:boolean" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddOrderNoteResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="UpdateOrderBillingInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" maxOccurs="1" name="firstName" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="lastName" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="phone" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="email" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="fax" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="company" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="address1" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="address2" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="city" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="region" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="country" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="postalCode" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateOrderBillingInfoResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="UpdateOrderShippingInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" maxOccurs="1" name="firstName" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="lastName" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="phone" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="email" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="fax" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="company" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="address1" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="address2" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="city" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="region" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="country" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="postalCode" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateOrderShippingInfoResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="SetOrderPaymentPaid">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentPaidResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="SetOrderPaymentPaidWithMethod">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" maxOccurs="1" name="paymentMethodName" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentPaidWithMethodResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="SetOrderPaymentPending">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentPendingResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="SetOrderPaymentRefund">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="orderId" type="xs:int" />
+            <xs:element minOccurs="1" maxOccurs="1" name="offline" type="xs:boolean" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentRefundResponse">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="SetOrdersStatusCanceled">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ordersId" type="tns:ArrayOfInt" />
+            <xs:element minOccurs="0" maxOccurs="1" name="usernameOrEmail" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="userPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrdersStatusCanceledResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="SetOrdersStatusCanceledResult" type="tns:ArrayOfOrderError" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="INopService_GetPaymentMethod_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentMethod" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPaymentMethod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_CheckLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckLogin" />
+  </wsdl:message>
+  <wsdl:message name="INopService_CheckLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetUserName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserName" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetUserName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrders" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOrderById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderById" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOrderById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomerList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerList" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomerList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerListResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPendingTotal_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingTotal" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPendingTotal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_EndSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:EndSession" />
+  </wsdl:message>
+  <wsdl:message name="INopService_EndSession_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EndSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCompleteTotal_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompleteTotal" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCompleteTotal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompleteTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCancelledTotal_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCancelledTotal" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCancelledTotal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCancelledTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetStoreName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoreName" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetStoreName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoreNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetRegisteredUsersCountByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegisteredUsersCountByTime" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetRegisteredUsersCountByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegisteredUsersCountByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetTotalSalesByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalSalesByTime" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetTotalSalesByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalSalesByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetTotalPendingByReason_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalPendingByReason" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetTotalPendingByReason_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalPendingByReasonResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPendingOrdersCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingOrdersCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPendingOrdersCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingOrdersCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrentCartsCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentCartsCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrentCartsCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentCartsCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetWishlistCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWishlistCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetWishlistCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWishlistCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOnlineCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOnlineCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetRegisteredCustomersCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegisteredCustomersCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetRegisteredCustomersCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegisteredCustomersCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetVendorsCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVendorsCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetVendorsCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVendorsCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPopularKeywords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPopularKeywords" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPopularKeywords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPopularKeywordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestsellersByAmount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestsellersByAmount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestsellersByAmount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestsellersByAmountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestsellersByQuantity_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestsellersByQuantity" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestsellersByQuantity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestsellersByQuantityResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrency_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrency" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByEmail" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByUsername" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByFirstname_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByFirstname" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByFirstname_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByFirstnameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByLastname_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByLastname" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByLastname_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByLastnameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByFullname_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByFullname" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByFullname_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByFullnameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByCompany" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByPhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByPhone" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByPhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByPostalCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByPostalCode" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByPostalCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByPostalCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrentCarts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentCarts" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrentCarts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentCartsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestCustomers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestCustomers" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestCustomers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestCustomersResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ExecuteDataSet_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteDataSet" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ExecuteDataSet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteDataSetResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ExecuteNonQuery_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteNonQuery" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ExecuteNonQuery_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteNonQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ExecuteScalar_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteScalar" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ExecuteScalar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteScalarResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_DeleteOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrders" />
+  </wsdl:message>
+  <wsdl:message name="INopService_DeleteOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_DeleteOrdersWithoutUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrdersWithoutUser" />
+  </wsdl:message>
+  <wsdl:message name="INopService_DeleteOrdersWithoutUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrdersWithoutUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangeOrderStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeOrderStatus" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangeOrderStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeOrderStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangePaymentStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePaymentStatus" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangePaymentStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePaymentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangeShippingStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeShippingStatus" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangeShippingStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeShippingStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddCommentToCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCommentToCustomer" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddCommentToCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCommentToCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddOrderNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddOrderNote" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddOrderNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddOrderNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_UpdateOrderBillingInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderBillingInfo" />
+  </wsdl:message>
+  <wsdl:message name="INopService_UpdateOrderBillingInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderBillingInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_UpdateOrderShippingInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderShippingInfo" />
+  </wsdl:message>
+  <wsdl:message name="INopService_UpdateOrderShippingInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderShippingInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPaid_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPaid" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPaid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPaidResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPaidWithMethod_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPaidWithMethod" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPaidWithMethod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPaidWithMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPending_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPending" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPending_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPendingResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentRefund_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentRefund" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentRefund_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentRefundResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrdersStatusCanceled_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrdersStatusCanceled" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrdersStatusCanceled_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrdersStatusCanceledResponse" />
+  </wsdl:message>
+  <wsdl:portType name="INopService">
+    <wsdl:operation name="GetPaymentMethod">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetPaymentMethod" message="tns:INopService_GetPaymentMethod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetPaymentMethodResponse" message="tns:INopService_GetPaymentMethod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/CheckLogin" message="tns:INopService_CheckLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/CheckLoginResponse" message="tns:INopService_CheckLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserName">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetUserName" message="tns:INopService_GetUserName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetUserNameResponse" message="tns:INopService_GetUserName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetOrders" message="tns:INopService_GetOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetOrdersResponse" message="tns:INopService_GetOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderById">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetOrderById" message="tns:INopService_GetOrderById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetOrderByIdResponse" message="tns:INopService_GetOrderById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerList">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomerList" message="tns:INopService_GetCustomerList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomerListResponse" message="tns:INopService_GetCustomerList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTotal">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetPendingTotal" message="tns:INopService_GetPendingTotal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetPendingTotalResponse" message="tns:INopService_GetPendingTotal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EndSession">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/EndSession" message="tns:INopService_EndSession_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/EndSessionResponse" message="tns:INopService_EndSession_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompleteTotal">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCompleteTotal" message="tns:INopService_GetCompleteTotal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCompleteTotalResponse" message="tns:INopService_GetCompleteTotal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCancelledTotal">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCancelledTotal" message="tns:INopService_GetCancelledTotal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCancelledTotalResponse" message="tns:INopService_GetCancelledTotal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetStoreName" message="tns:INopService_GetStoreName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetStoreNameResponse" message="tns:INopService_GetStoreName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegisteredUsersCountByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetRegisteredUsersCountByTime" message="tns:INopService_GetRegisteredUsersCountByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetRegisteredUsersCountByTimeResponse" message="tns:INopService_GetRegisteredUsersCountByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalSalesByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetTotalSalesByTime" message="tns:INopService_GetTotalSalesByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetTotalSalesByTimeResponse" message="tns:INopService_GetTotalSalesByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalPendingByReason">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetTotalPendingByReason" message="tns:INopService_GetTotalPendingByReason_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetTotalPendingByReasonResponse" message="tns:INopService_GetTotalPendingByReason_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingOrdersCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetPendingOrdersCount" message="tns:INopService_GetPendingOrdersCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetPendingOrdersCountResponse" message="tns:INopService_GetPendingOrdersCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentCartsCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCurrentCartsCount" message="tns:INopService_GetCurrentCartsCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCurrentCartsCountResponse" message="tns:INopService_GetCurrentCartsCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWishlistCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetWishlistCount" message="tns:INopService_GetWishlistCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetWishlistCountResponse" message="tns:INopService_GetWishlistCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetOnlineCount" message="tns:INopService_GetOnlineCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetOnlineCountResponse" message="tns:INopService_GetOnlineCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegisteredCustomersCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetRegisteredCustomersCount" message="tns:INopService_GetRegisteredCustomersCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetRegisteredCustomersCountResponse" message="tns:INopService_GetRegisteredCustomersCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorsCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetVendorsCount" message="tns:INopService_GetVendorsCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetVendorsCountResponse" message="tns:INopService_GetVendorsCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPopularKeywords">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetPopularKeywords" message="tns:INopService_GetPopularKeywords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetPopularKeywordsResponse" message="tns:INopService_GetPopularKeywords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBestsellersByAmount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetBestsellersByAmount" message="tns:INopService_GetBestsellersByAmount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetBestsellersByAmountResponse" message="tns:INopService_GetBestsellersByAmount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBestsellersByQuantity">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetBestsellersByQuantity" message="tns:INopService_GetBestsellersByQuantity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetBestsellersByQuantityResponse" message="tns:INopService_GetBestsellersByQuantity_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCurrency" message="tns:INopService_GetCurrency_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCurrencyResponse" message="tns:INopService_GetCurrency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByEmail" message="tns:INopService_GetCustomersByEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByEmailResponse" message="tns:INopService_GetCustomersByEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByUsername" message="tns:INopService_GetCustomersByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByUsernameResponse" message="tns:INopService_GetCustomersByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByFirstname">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByFirstname" message="tns:INopService_GetCustomersByFirstname_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByFirstnameResponse" message="tns:INopService_GetCustomersByFirstname_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByLastname">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByLastname" message="tns:INopService_GetCustomersByLastname_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByLastnameResponse" message="tns:INopService_GetCustomersByLastname_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByFullname">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByFullname" message="tns:INopService_GetCustomersByFullname_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByFullnameResponse" message="tns:INopService_GetCustomersByFullname_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByCompany" message="tns:INopService_GetCustomersByCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByCompanyResponse" message="tns:INopService_GetCustomersByCompany_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByPhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByPhone" message="tns:INopService_GetCustomersByPhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByPhoneResponse" message="tns:INopService_GetCustomersByPhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByPostalCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByPostalCode" message="tns:INopService_GetCustomersByPostalCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByPostalCodeResponse" message="tns:INopService_GetCustomersByPostalCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentCarts">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCurrentCarts" message="tns:INopService_GetCurrentCarts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCurrentCartsResponse" message="tns:INopService_GetCurrentCarts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBestCustomers">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetBestCustomers" message="tns:INopService_GetBestCustomers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetBestCustomersResponse" message="tns:INopService_GetBestCustomers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteDataSet">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ExecuteDataSet" message="tns:INopService_ExecuteDataSet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ExecuteDataSetResponse" message="tns:INopService_ExecuteDataSet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteNonQuery">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ExecuteNonQuery" message="tns:INopService_ExecuteNonQuery_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ExecuteNonQueryResponse" message="tns:INopService_ExecuteNonQuery_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteScalar">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ExecuteScalar" message="tns:INopService_ExecuteScalar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ExecuteScalarResponse" message="tns:INopService_ExecuteScalar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/DeleteOrders" message="tns:INopService_DeleteOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/DeleteOrdersResponse" message="tns:INopService_DeleteOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrdersWithoutUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/DeleteOrdersWithoutUser" message="tns:INopService_DeleteOrdersWithoutUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/DeleteOrdersWithoutUserResponse" message="tns:INopService_DeleteOrdersWithoutUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOrderStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ChangeOrderStatus" message="tns:INopService_ChangeOrderStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ChangeOrderStatusResponse" message="tns:INopService_ChangeOrderStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePaymentStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ChangePaymentStatus" message="tns:INopService_ChangePaymentStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ChangePaymentStatusResponse" message="tns:INopService_ChangePaymentStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeShippingStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ChangeShippingStatus" message="tns:INopService_ChangeShippingStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ChangeShippingStatusResponse" message="tns:INopService_ChangeShippingStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCommentToCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/AddCommentToCustomer" message="tns:INopService_AddCommentToCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/AddCommentToCustomerResponse" message="tns:INopService_AddCommentToCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOrderNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/AddOrderNote" message="tns:INopService_AddOrderNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/AddOrderNoteResponse" message="tns:INopService_AddOrderNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderBillingInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/UpdateOrderBillingInfo" message="tns:INopService_UpdateOrderBillingInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/UpdateOrderBillingInfoResponse" message="tns:INopService_UpdateOrderBillingInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderShippingInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/UpdateOrderShippingInfo" message="tns:INopService_UpdateOrderShippingInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/UpdateOrderShippingInfoResponse" message="tns:INopService_UpdateOrderShippingInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPaid">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPaid" message="tns:INopService_SetOrderPaymentPaid_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPaidResponse" message="tns:INopService_SetOrderPaymentPaid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPaidWithMethod">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPaidWithMethod" message="tns:INopService_SetOrderPaymentPaidWithMethod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPaidWithMethodResponse" message="tns:INopService_SetOrderPaymentPaidWithMethod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPending">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPending" message="tns:INopService_SetOrderPaymentPending_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPendingResponse" message="tns:INopService_SetOrderPaymentPending_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentRefund">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentRefund" message="tns:INopService_SetOrderPaymentRefund_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentRefundResponse" message="tns:INopService_SetOrderPaymentRefund_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrdersStatusCanceled">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/SetOrdersStatusCanceled" message="tns:INopService_SetOrdersStatusCanceled_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/SetOrdersStatusCanceledResponse" message="tns:INopService_SetOrdersStatusCanceled_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_INopService" type="tns:INopService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPaymentMethod">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetPaymentMethod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckLogin">
+      <soap:operation soapAction="http://tempuri.org/INopService/CheckLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserName">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderById">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetOrderById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerList">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomerList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTotal">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetPendingTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndSession">
+      <soap:operation soapAction="http://tempuri.org/INopService/EndSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompleteTotal">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCompleteTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCancelledTotal">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCancelledTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetStoreName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegisteredUsersCountByTime">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetRegisteredUsersCountByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalSalesByTime">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetTotalSalesByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalPendingByReason">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetTotalPendingByReason" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingOrdersCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetPendingOrdersCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentCartsCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCurrentCartsCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWishlistCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetWishlistCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetOnlineCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegisteredCustomersCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetRegisteredCustomersCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorsCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetVendorsCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPopularKeywords">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetPopularKeywords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBestsellersByAmount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetBestsellersByAmount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBestsellersByQuantity">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetBestsellersByQuantity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByEmail">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByUsername">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByFirstname">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByFirstname" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByLastname">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByLastname" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByFullname">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByFullname" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByCompany">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByPhone">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByPostalCode">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByPostalCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentCarts">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCurrentCarts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBestCustomers">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetBestCustomers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteDataSet">
+      <soap:operation soapAction="http://tempuri.org/INopService/ExecuteDataSet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteNonQuery">
+      <soap:operation soapAction="http://tempuri.org/INopService/ExecuteNonQuery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteScalar">
+      <soap:operation soapAction="http://tempuri.org/INopService/ExecuteScalar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrders">
+      <soap:operation soapAction="http://tempuri.org/INopService/DeleteOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrdersWithoutUser">
+      <soap:operation soapAction="http://tempuri.org/INopService/DeleteOrdersWithoutUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOrderStatus">
+      <soap:operation soapAction="http://tempuri.org/INopService/ChangeOrderStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePaymentStatus">
+      <soap:operation soapAction="http://tempuri.org/INopService/ChangePaymentStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeShippingStatus">
+      <soap:operation soapAction="http://tempuri.org/INopService/ChangeShippingStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCommentToCustomer">
+      <soap:operation soapAction="http://tempuri.org/INopService/AddCommentToCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOrderNote">
+      <soap:operation soapAction="http://tempuri.org/INopService/AddOrderNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderBillingInfo">
+      <soap:operation soapAction="http://tempuri.org/INopService/UpdateOrderBillingInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderShippingInfo">
+      <soap:operation soapAction="http://tempuri.org/INopService/UpdateOrderShippingInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPaid">
+      <soap:operation soapAction="http://tempuri.org/INopService/SetOrderPaymentPaid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPaidWithMethod">
+      <soap:operation soapAction="http://tempuri.org/INopService/SetOrderPaymentPaidWithMethod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPending">
+      <soap:operation soapAction="http://tempuri.org/INopService/SetOrderPaymentPending" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentRefund">
+      <soap:operation soapAction="http://tempuri.org/INopService/SetOrderPaymentRefund" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrdersStatusCanceled">
+      <soap:operation soapAction="http://tempuri.org/INopService/SetOrdersStatusCanceled" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NopService">
+    <wsdl:port name="BasicHttpBinding_INopService" binding="tns:BasicHttpBinding_INopService">
+      <soap:address location="http://absampaio-001-site1.myasp.net/Plugins/Misc.WebServices/Remote/NopService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

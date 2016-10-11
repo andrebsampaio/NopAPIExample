@@ -1,0 +1,110 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="NopMobile.WP.Client.Pages.OrderDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <StackPanel x:Name="LoadingHolder" Orientation="Vertical" VerticalAlignment="Center">
+            <ProgressBar  x:Name="LoginProgress" Height="10" IsIndeterminate="True"/>
+            <TextBlock x:Name="LoadingMessage" Text="Loading Order.."  HorizontalAlignment="Center" />
+        </StackPanel>
+        
+        <StackPanel x:Name="SearchHolder" Visibility="Collapsed">
+            <ContentPresenter ContentTemplate="{StaticResource SearchSection}"/>
+        </StackPanel>
+        
+        <ScrollViewer x:Name="DetailsHolder" Visibility="Collapsed"  Margin="0,120,0,0">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="240" Content="Re-Order" Click="ReOrder_Click"/>
+                    <Button Width="240" Content="PDF Invoice" Click="Pdf_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Order Total: " Margin="12,0,0,0" Style="{StaticResource PhoneTextTitle2Style}"/>
+                    <TextBlock x:Name="OrderTotalConfirmation" Margin="0,0,0,0" Style="{StaticResource PhoneTextTitle2Style}"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,12" >
+                    <TextBlock Text="Billing Address" Style="{StaticResource PhoneTextTitle2Style}"/>
+                    <TextBlock x:Name="BillingName" Style="{StaticResource PhoneTextTitle3Style}"/>
+                    <TextBlock Margin="12,0,0,0" x:Name="BillingEmail"/>
+                    <StackPanel Margin="12,0,0,0" Orientation="Horizontal">
+                        <TextBlock Text="Phone Number: "/>
+                        <TextBlock x:Name="BillingPhone"/>
+                    </StackPanel>
+                    <TextBlock Margin="12,0,0,0" x:Name="BillingStreet"/>
+                    <StackPanel Margin="12,0,0,0"  Orientation="Horizontal">
+                        <TextBlock x:Name="BillingCity"/>
+                        <TextBlock x:Name="BillingPostal"/>
+                    </StackPanel>
+                    <TextBlock Margin="12,0,0,0" x:Name="BillingCountry"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Shipping Address" Style="{StaticResource PhoneTextTitle2Style}"/>
+                    <TextBlock x:Name="ShippingName" Style="{StaticResource PhoneTextTitle3Style}"/>
+                    <TextBlock Margin="12,0,0,0" x:Name="ShippingEmail"/>
+                    <StackPanel Margin="12,0,0,0" Orientation="Horizontal">
+                        <TextBlock Text="Phone Number: "/>
+                        <TextBlock x:Name="ShippingPhone"/>
+                    </StackPanel>
+                    <TextBlock Margin="12,0,0,0" x:Name="ShippingStreet"/>
+                    <StackPanel Margin="12,0,0,0"  Orientation="Horizontal">
+                        <TextBlock x:Name="ShippingCity"/>
+                        <TextBlock x:Name="ShippingPostal"/>
+                    </StackPanel>
+                    <TextBlock Margin="12,0,0,0" x:Name="ShippingCountry"/>
+                </StackPanel>
+                <TextBlock Margin="12,12,0,12" Text="Products List" Style="{StaticResource PhoneTextTitle2Style}"/>
+                <ScrollViewer Margin="12,0,0,12" Height="255" HorizontalScrollBarVisibility="Visible"  VerticalScrollBarVisibility="Disabled">
+                    <ItemsControl x:Name="ProductsList">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="0,0,12,0" BorderThickness="1" BorderBrush="Black">
+                                    <StackPanel Height="250" Width="442">
+                                        <StackPanel.Background>
+                                            <ImageBrush Stretch="Uniform" ImageSource="{Binding Image}" />
+                                        </StackPanel.Background>
+                                        <Grid>
+                                            <StackPanel>
+                                                <StackPanel HorizontalAlignment="Right" Background="LightGray">
+                                                    <TextBlock Text="{Binding UnitPrice}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                                </StackPanel>
+                                                <StackPanel HorizontalAlignment="Right" Background="{StaticResource PhoneAccentBrush}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Margin="12,0,0,0" Text="Quantity: " Style="{StaticResource PhoneTextTitle2Style}"/>
+                                                        <TextBlock Margin="0,0,12,0" Text="{Binding Quantity}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <StackPanel HorizontalAlignment="Right" Background="LightGreen" Margin="0,206,0,-165">
+                                                <TextBlock Text="{Binding ProductName}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+
+</phone:PhoneApplicationPage>

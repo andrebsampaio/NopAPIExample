@@ -1,0 +1,212 @@
+﻿<phone:PhoneApplicationPage
+    ApplicationBar = "{StaticResource RefreshAppBar }"
+    x:Class="NopMobile.WP.Dashboard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:oxy="clr-namespace:OxyPlot.WP8;assembly=OxyPlot.WP8"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+    
+    
+    
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="TileListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontSize" Value="64"/>
+            <Setter Property="Margin" Value="12,12,0,0"/>
+            <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="390"/>
+            <Setter Property="Height" Value="300"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Grid>
+                            <Rectangle Fill="{TemplateBinding Background}"/>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
+    
+    
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <phone:Panorama x:Name="PanoramaControl" Title="nopmobile">
+
+            <!--Panorama item one-->
+            <phone:PanoramaItem x:Name="SideMenu" Header="Loading..">
+                <StackPanel Margin="15,-42,0,0">
+                    <TextBlock x:Name="AdminName" Margin="0,0,0,0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Loading.." Width="402" Height="45" VerticalAlignment="Top"  Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Margin="0,30,0,0" VerticalAlignment="Top" Width="402" Height="48"  Text="associate new store" Tap="AssociateNewStore_Tap" Style="{StaticResource PhoneTextLargeStyle}"/>
+                    <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" Margin="0,0,0,0" VerticalAlignment="Top" Width="402" Height="48" Tap="carts_Tap" Text="current shopping carts" Style="{StaticResource PhoneTextLargeStyle}"/>
+                    <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" Margin="0,0,0,0" VerticalAlignment="Top" Width="402" Height="48" Text="configurations" Tap="Configurations_Tap" Style="{StaticResource PhoneTextLargeStyle}"/>
+                    <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" Margin="0,0,0,0" VerticalAlignment="Top" Width="402" Height="48" Text="logout" Tap="Logout_Tap" Style="{StaticResource PhoneTextLargeStyle}"/>
+                    <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" Margin="0,0,0,0" VerticalAlignment="Top" Width="402" Height="48" Tap="Help_Tap" Style="{StaticResource PhoneTextLargeStyle}" Text="help"/>
+                    <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" Margin="0,0,0,0" VerticalAlignment="Top" Width="402" Style="{StaticResource PhoneTextExtraLargeStyle}" Text="My Stores"/>
+                    <ListBox x:Name="MyStoresList" Margin="20,0,0,0" SelectionChanged="MyStoresList_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" x:Name="first" Text="{Binding}" />
+                                    <TextBlock  Style="{StaticResource PhoneTextLargeStyle}" FontFamily="Segoe UI Symbol" Text="&#xe201;"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+
+            </phone:PanoramaItem>
+
+            <!--Panorama item two-->
+            <phone:PanoramaItem Header="dashboard">
+                <Grid Margin="0,-42,0,0">
+                    <!-- set its ItemContainerStyle which is the style for each ListBoxItem -->
+                    <ListBox ItemContainerStyle="{StaticResource TileListBoxItemStyle}">
+                        <!-- set its ItemsPanel to be a WrapPanel -->
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBoxItem>
+                            <Grid Background="#33B5E5">
+                                <TextBlock Margin="10,11,0,-11" Text="Sale Values" />
+                                <StackPanel Margin="0,100,0,0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0"  Text="Pending: " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="PendingSales" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"  />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0"  Text="Complete: " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="CompleteSales" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"  />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0"  Text="Cancelled: " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="CancelledSales" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"  />
+                                    </StackPanel>
+                                </StackPanel>
+                                <Grid Tap="SaleValues_Tap" Background="#33000000" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="390">
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Complete Report" VerticalAlignment="Top" Style="{StaticResource PhoneTextTitle2Style}" Height="48"/>
+                                <TextBlock HorizontalAlignment="Right" Padding="0,4,5,5" FontFamily="Segoe UI Symbol" Text="&#xE2A9;" FontSize="30" ></TextBlock>
+                                </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </ListBoxItem>
+                        <ListBoxItem >
+                            <Grid Background="#99CC00">
+                                <TextBlock Margin="10,11,0,-11" Text="Orders" />
+                                <StackPanel Margin="0,100,0,0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0"  Text="Pending Orders: " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="PendingOrders" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"  />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0"  Text="Carts: " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="Carts" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"  />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0"  Text="Wishlists: " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="Wishlists" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"  />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                    <Grid Background="#66000000" HorizontalAlignment="Right" Tap="LatestOrders_Tap" VerticalAlignment="Bottom" Width="390">
+                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                                            <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap"  Text="Latest Orders" VerticalAlignment="Top" Style="{StaticResource PhoneTextTitle2Style}" Height="48"/>
+                                            <TextBlock HorizontalAlignment="Right" Padding="0,4,5,5" FontFamily="Segoe UI Symbol" Text="&#xE2A9;" FontSize="30" ></TextBlock>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Tap="SearchOrders_Tap" Background="#33000000" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="390">
+                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                                            <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Orders Search" VerticalAlignment="Top" Style="{StaticResource PhoneTextTitle2Style}" Height="48"/>
+                                            <TextBlock HorizontalAlignment="Right" Padding="0,4,5,5" FontFamily="Segoe UI Symbol" Text="&#xE2A9;" FontSize="30" ></TextBlock>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </ListBoxItem>
+                        <ListBoxItem >
+                            <Grid Background="#FFBB33">
+                                <TextBlock Margin="10,11,0,-11" Text="Customers" />
+                                <StackPanel Margin="0,100,0,0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0"  Text="Visitors Today: " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="Visitors" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"  />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0"  Text="Registered: " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="Registered" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"  />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0"  Text="Vendors: " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="Vendors" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"  />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel  Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                    <Grid Tap="BestCustomers_Tap" Background="#66000000" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="390">
+                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                                            <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Best Customers" VerticalAlignment="Top" Style="{StaticResource PhoneTextTitle2Style}" Height="48"/>
+                                            <TextBlock HorizontalAlignment="Right" Padding="0,4,5,5" FontFamily="Segoe UI Symbol" Text="&#xE2A9;" FontSize="30" ></TextBlock>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Tap="SearchCustomers_Tap" Background="#33000000" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="390">
+                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                                            <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Customer Search" VerticalAlignment="Top" Style="{StaticResource PhoneTextTitle2Style}" Height="48"/>
+                                            <TextBlock HorizontalAlignment="Right" Padding="0,4,5,5" FontFamily="Segoe UI Symbol" Text="&#xE2A9;" FontSize="30" ></TextBlock>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </ListBoxItem>
+                        <ListBoxItem Height="570">
+                            <Grid Background="#FF4444">
+                                <TextBlock Margin="10,10,0,-10" Text="Statistics" />
+                                <StackPanel Margin="0,100,0,0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <TextBlock Margin="10,0,0,0" Text="Popular Keywords: " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                    <StackPanel x:Name="WordsHolder" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0" Text="Bestseller(Amount): " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="BestsellerAmount" TextWrapping="Wrap" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"   />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <TextBlock Margin="10,0,0,0" Text="Bestseller(Quantity): " Style="{StaticResource PhoneTextTitle3Style}"  />
+                                        <TextBlock x:Name="BestsellerQuantity" TextWrapping="Wrap" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle3Style}"   />
+                                    </StackPanel>
+                                    <Grid Margin="0,10,0,0" HorizontalAlignment="Center" Height="280" Width="380">
+                                        <oxy:Plot x:Name="RegisteredPlot" Background="#33000000" Model="{Binding}" Grid.Row="1"/>
+                                    </Grid>
+                                </StackPanel>
+                                <Grid Tap="MiscStats_Tap" Background="#33000000" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="390">
+                                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                                        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Complete Statistics" VerticalAlignment="Top" Style="{StaticResource PhoneTextTitle2Style}" Height="48"/>
+                                        <TextBlock HorizontalAlignment="Right" Padding="0,4,5,5" FontFamily="Segoe UI Symbol" Text="&#xE2A9;" FontSize="30" ></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </ListBoxItem>
+                    </ListBox>
+                </Grid>
+            </phone:PanoramaItem>
+        </phone:Panorama>
+    </Grid>
+
+
+</phone:PhoneApplicationPage>

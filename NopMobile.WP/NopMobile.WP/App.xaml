@@ -1,0 +1,92 @@
+﻿<Application
+    x:Class="NopMobile.WP.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+
+    <!--Application Resources-->
+    
+    <Application.Resources>
+        <local:LocalizedStrings xmlns:local="clr-namespace:NopMobile.WP" x:Key="LocalizedStrings"/>
+
+        <shell:ApplicationBar x:Key="RefreshAppBar" IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="RefreshButton" IconUri="Images/refresh.png" Text="Refresh" Click="Refresh_Click"/>
+        </shell:ApplicationBar>
+
+        <DataTemplate x:Key="ProdOrderTemplate">
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <StackPanel>
+                    <Image Width="150" Height="150" Source="{Binding Image}"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Margin="15,0,0,0" Text="{Binding Product}" Style="{StaticResource PhoneTextTitle3Style}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="15,0,0,0" FontWeight="Bold" Text="Quantity: " Style="{StaticResource PhoneTextTitle3Style}"/>
+                        <TextBlock Text="{Binding Quantity}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="15,0,0,0" FontWeight="Bold" Text="Total: " Style="{StaticResource PhoneTextTitle3Style}"/>
+                        <TextBlock Text="{Binding Total}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="CartsTemplate">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel MaxWidth="200" Orientation="Vertical">
+                    <TextBlock Margin="0,0,0,0"  FontWeight="Bold" Text="{Binding Email}" Style="{StaticResource PhoneTextTitle3Style}" />
+                    <TextBlock  Text="{Binding FullName}" Style="{StaticResource PhoneTextTitle3Style}" />
+                </StackPanel>
+                <StackPanel MaxWidth="150"  Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Center"  FontWeight="Bold" Text="Quantity:" Style="{StaticResource PhoneTextTitle3Style}" />
+                    <TextBlock HorizontalAlignment="Center" Text="{Binding Quantity}" Style="{StaticResource PhoneTextSmallStyle}" />
+                </StackPanel>
+                <StackPanel MaxWidth="130" Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Center"  FontWeight="Bold" Text="Amount:" Style="{StaticResource PhoneTextTitle3Style}" />
+                    <TextBlock  Text="{Binding Amount}" Style="{StaticResource PhoneTextSmallStyle}" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="OrderTemplate">
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <StackPanel Margin="0,0,20,0" Orientation="Horizontal" MinWidth="30" MaxWidth="30" Background="{Binding BackgroundColor }"/>
+                <StackPanel Margin="0,0,20,0" Orientation="Horizontal">
+                    <TextBlock Text="ID: " VerticalAlignment="Center"/>
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Id}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Margin="0,0,0,0"  FontWeight="Bold" Text="{Binding ProductName}" Style="{StaticResource PhoneTextTitle3Style}" />
+                    <TextBlock Text="{Binding Email}" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="UserTemplate">
+            <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                <StackPanel Margin="0,0,20,0" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth ="100" MaxWidth="100" Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold" Text="ID: " VerticalAlignment="Center"/>
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Id}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Margin="0,0,0,0"   Text="{Binding Fullname}" Style="{StaticResource PhoneTextTitle3Style}" />
+                    <TextBlock FontWeight="Bold" Text="{Binding Email}" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService
+            Launching="Application_Launching" Closing="Application_Closing"
+            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+
+        
+
+    </Application.ApplicationLifetimeObjects>
+
+</Application>

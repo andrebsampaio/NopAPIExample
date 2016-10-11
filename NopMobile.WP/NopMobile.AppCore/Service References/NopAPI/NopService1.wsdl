@@ -1,0 +1,2953 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="NopService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Orders" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Payments" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" />
+      <xs:element name="CheckLogin">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CheckLoginResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="CheckLoginResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CheckLoginClient">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UsernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="UserPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CheckLoginClientResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="CheckLoginClientResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RegisterClient">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Male" type="xs:boolean" />
+            <xs:element minOccurs="0" name="Firstname" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="Lastname" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="Birthday" type="xs:dateTime" />
+            <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RegisterClientResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="RegisterClientResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FeaturedProducts">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FeaturedProductsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="FeaturedProductsResult" nillable="true" type="q1:ArrayOfProductDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecentlyViewedProducts">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="number" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecentlyViewedProductsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="RecentlyViewedProductsResult" nillable="true" type="q2:ArrayOfProductDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetMainCategories">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetMainCategoriesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetMainCategoriesResult" nillable="true" type="q3:ArrayOfCategoryDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSubCategoriesFromParent">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Id" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSubCategoriesFromParentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetSubCategoriesFromParentResult" nillable="true" type="q4:ArrayOfCategoryDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveFromCart">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="CartItemId" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveFromCartResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="RemoveFromCartResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetStoreUrl">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetStoreUrlResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetStoreUrlResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CategoryProductsSortedFiltered">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="CatId" type="xs:int" />
+            <xs:element minOccurs="0" name="Sorted" type="xs:boolean" />
+            <xs:element minOccurs="0" name="Filtered" type="xs:boolean" />
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" minOccurs="0" name="Sorting" type="q5:ProductSortingEnum" />
+            <xs:element minOccurs="0" name="Max" type="xs:decimal" />
+            <xs:element minOccurs="0" name="Min" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CategoryProductsSortedFilteredResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="CategoryProductsSortedFilteredResult" nillable="true" type="q6:ArrayOfProductDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ShippingMethods">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ShippingMethodsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ShippingMethodsResult" nillable="true" type="q7:ArrayOfstring" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PaymentMethods">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PaymentMethodsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PaymentMethodsResult" nillable="true" type="q8:ArrayOfstring" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetShippingFees">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetShippingFeesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetShippingFeesResult" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTaxFees">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTaxFeesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetTaxFeesResult" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReOrder">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="OrderId" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReOrderResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ReOrderResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPdfInvoice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="OrderId" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPdfInvoiceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetPdfInvoiceResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddAddress">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="Firstname" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="Lastname" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="CountryName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="Province" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="Street" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddAddressResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="AddAddressResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllCountries">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllCountriesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetAllCountriesResult" nillable="true" type="q9:ArrayOfCountryDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddNewOrder">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+            <xs:element minOccurs="0" name="BillingAddressId" type="xs:int" />
+            <xs:element minOccurs="0" name="ShippingAddressId" type="xs:int" />
+            <xs:element minOccurs="0" name="ShippingMethod" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PaymentMethod" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="GiftWrap" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddNewOrderResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AddNewOrderResult" nillable="true" type="q10:ArrayOfstring" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddToCart">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="ProdId" type="xs:int" />
+            <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+            <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Attributes" nillable="true" type="q11:ArrayOfstring" />
+            <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Orders" minOccurs="0" name="Type" type="q12:ShoppingCartType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddToCartResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="AddToCartResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductById">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetProductByIdResult" nillable="true" type="q13:ProductDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllProductsFromCategory">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllProductsFromCategoryResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetAllProductsFromCategoryResult" nillable="true" type="q14:ArrayOfProductDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCategoryById">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCategoryByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCategoryByIdResult" nillable="true" type="q15:CategoryDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductsByKeywords">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Words" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetProductsByKeywordsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetProductsByKeywordsResult" nillable="true" type="q16:ArrayOfProductDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserName">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserNameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetUserNameResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOrders">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="storeId" type="xs:int" />
+            <xs:element minOccurs="0" name="vendorId" type="xs:int" />
+            <xs:element minOccurs="0" name="customerId" type="xs:int" />
+            <xs:element minOccurs="0" name="productId" type="xs:int" />
+            <xs:element minOccurs="0" name="affiliateId" type="xs:int" />
+            <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Orders" minOccurs="0" name="os" nillable="true" type="q17:OrderStatus" />
+            <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Payments" minOccurs="0" name="ps" nillable="true" type="q18:PaymentStatus" />
+            <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" minOccurs="0" name="ss" nillable="true" type="q19:ShippingStatus" />
+            <xs:element minOccurs="0" name="billingEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="pageIndex" type="xs:int" />
+            <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOrdersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetOrdersResult" nillable="true" type="q20:ArrayOfOrderDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOrderById">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOrderByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetOrderByIdResult" nillable="true" type="q21:OrderDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomerList">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomerListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCustomerListResult" nillable="true" type="q22:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPendingTotal">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPendingTotalResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetPendingTotalResult" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="EndSession">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="EndSessionResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCompleteTotal">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCompleteTotalResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetCompleteTotalResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCancelledTotal">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCancelledTotalResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetCancelledTotalResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetStoreName">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetStoreNameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetStoreNameResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRegisteredUsersCountByTime">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="days" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRegisteredUsersCountByTimeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetRegisteredUsersCountByTimeResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTotalSalesByTime">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="days" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTotalSalesByTimeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetTotalSalesByTimeResult" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTotalPendingByReason">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="reason" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTotalPendingByReasonResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetTotalPendingByReasonResult" type="xs:decimal" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPendingOrdersCount">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPendingOrdersCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetPendingOrdersCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCurrentCartsCount">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCurrentCartsCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetCurrentCartsCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetWishlistCount">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetWishlistCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetWishlistCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOnlineCount">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetOnlineCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetOnlineCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRegisteredCustomersCount">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRegisteredCustomersCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetRegisteredCustomersCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetVendorsCount">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetVendorsCountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetVendorsCountResult" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPopularKeywords">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="KeywordNumber" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPopularKeywordsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetPopularKeywordsResult" nillable="true" type="q23:ArrayOfKeywordDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBestsellersByAmount">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBestsellersByAmountResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetBestsellersByAmountResult" nillable="true" type="q24:ArrayOfBestsellerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBestsellersByQuantity">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBestsellersByQuantityResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetBestsellersByQuantityResult" nillable="true" type="q25:ArrayOfBestsellerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCurrency">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCurrencyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetCurrencyResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByEmail">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByEmailResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCustomersByEmailResult" nillable="true" type="q26:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByUsername">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByUsernameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCustomersByUsernameResult" nillable="true" type="q27:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByFirstname">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Firstname" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByFirstnameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCustomersByFirstnameResult" nillable="true" type="q28:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByLastname">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Lastname" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByLastnameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCustomersByLastnameResult" nillable="true" type="q29:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByFullname">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Fullname" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByFullnameResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCustomersByFullnameResult" nillable="true" type="q30:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByCompany">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByCompanyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCustomersByCompanyResult" nillable="true" type="q31:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByPhone">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByPhoneResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCustomersByPhoneResult" nillable="true" type="q32:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByPostalCode">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomersByPostalCodeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCustomersByPostalCodeResult" nillable="true" type="q33:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCurrentCarts">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Filter" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="LowerItems" nillable="true" type="xs:int" />
+            <xs:element minOccurs="0" name="HigherItems" nillable="true" type="xs:int" />
+            <xs:element minOccurs="0" name="LowerTotal" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="HigherTotal" nillable="true" type="xs:decimal" />
+            <xs:element minOccurs="0" name="Abandoned" nillable="true" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCurrentCartsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetCurrentCartsResult" nillable="true" type="q34:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBestCustomers">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBestCustomersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="GetBestCustomersResult" nillable="true" type="q35:ArrayOfCustomerDTO" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExecuteNonQuery">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sqlStatement" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExecuteNonQueryResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExecuteScalar">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="sqlStatement" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExecuteScalarResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ExecuteScalarResult" nillable="true" type="xs:anyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteOrders">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q36="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ordersId" nillable="true" type="q36:ArrayOfint" />
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteOrdersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="DeleteOrdersResult" nillable="true" type="q37:ArrayOfOrderError" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteOrdersWithoutUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q38="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ordersId" nillable="true" type="q38:ArrayOfint" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteOrdersWithoutUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="DeleteOrdersWithoutUserResult" nillable="true" type="q39:ArrayOfOrderError" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeOrderStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:int" />
+            <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Orders" minOccurs="0" name="status" type="q40:OrderStatus" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeOrderStatusResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangePaymentStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:int" />
+            <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Payments" minOccurs="0" name="status" type="q41:PaymentStatus" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangePaymentStatusResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeShippingStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:int" />
+            <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" minOccurs="0" name="status" type="q42:ShippingStatus" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeShippingStatusResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddCommentToCustomer">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddCommentToCustomerResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddOrderNote">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="displayToCustomer" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddOrderNoteResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateOrderBillingInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="phone" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="fax" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="company" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="address1" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="address2" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="region" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="postalCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateOrderBillingInfoResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateOrderShippingInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="phone" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="fax" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="company" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="address1" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="address2" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="region" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="postalCode" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateOrderShippingInfoResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentPaid">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentPaidResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentPaidWithMethod">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" name="paymentMethodName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentPaidWithMethodResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentPending">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentPendingResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentRefund">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="orderId" type="xs:int" />
+            <xs:element minOccurs="0" name="offline" type="xs:boolean" />
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrderPaymentRefundResponse">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrdersStatusCanceled">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q43="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ordersId" nillable="true" type="q43:ArrayOfint" />
+            <xs:element minOccurs="0" name="usernameOrEmail" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrdersStatusCanceledResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" minOccurs="0" name="SetOrdersStatusCanceledResult" nillable="true" type="q44:ArrayOfOrderError" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nop.Plugin.Misc.WebServices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Orders" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Payments" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" />
+      <xs:complexType name="ArrayOfProductDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductDTO" nillable="true" type="tns:ProductDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfProductDTO" nillable="true" type="tns:ArrayOfProductDTO" />
+      <xs:complexType name="ProductDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Attributes" nillable="true" type="tns:ArrayOfAttributeDTO" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ExtendedDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Image" nillable="true" type="q1:ArrayOfbase64Binary" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Rating" type="xs:int" />
+          <xs:element minOccurs="0" name="inStock" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ProductDTO" nillable="true" type="tns:ProductDTO" />
+      <xs:complexType name="ArrayOfAttributeDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="AttributeDTO" nillable="true" type="tns:AttributeDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfAttributeDTO" nillable="true" type="tns:ArrayOfAttributeDTO" />
+      <xs:complexType name="AttributeDTO">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" minOccurs="0" name="AttributeControl" type="q2:AttributeControlType" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Values" nillable="true" type="q3:ArrayOfstring" />
+          <xs:element minOccurs="0" name="isRequired" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="AttributeDTO" nillable="true" type="tns:AttributeDTO" />
+      <xs:complexType name="ArrayOfCategoryDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CategoryDTO" nillable="true" type="tns:CategoryDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfCategoryDTO" nillable="true" type="tns:ArrayOfCategoryDTO" />
+      <xs:complexType name="CategoryDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Image" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ParentId" type="xs:int" />
+          <xs:element minOccurs="0" name="ShowOnHomePage" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CategoryDTO" nillable="true" type="tns:CategoryDTO" />
+      <xs:complexType name="ArrayOfCountryDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CountryDTO" nillable="true" type="tns:CountryDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfCountryDTO" nillable="true" type="tns:ArrayOfCountryDTO" />
+      <xs:complexType name="CountryDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Provinces" nillable="true" type="q4:ArrayOfstring" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CountryDTO" nillable="true" type="tns:CountryDTO" />
+      <xs:complexType name="ArrayOfOrderDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderDTO" nillable="true" type="tns:OrderDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfOrderDTO" nillable="true" type="tns:ArrayOfOrderDTO" />
+      <xs:complexType name="OrderDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BillingAddress" nillable="true" type="tns:AddressDTO" />
+          <xs:element minOccurs="0" name="CreateDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="OrderEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderID" type="xs:int" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Orders" minOccurs="0" name="OrderStatus" type="q5:OrderStatus" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Payments" minOccurs="0" name="PayStatus" type="q6:PaymentStatus" />
+          <xs:element minOccurs="0" name="ProductsList" nillable="true" type="tns:ArrayOfOrderItemDTO" />
+          <xs:element minOccurs="0" name="ShippingAddress" nillable="true" type="tns:AddressDTO" />
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" minOccurs="0" name="ShippingStatus" type="q7:ShippingStatus" />
+          <xs:element minOccurs="0" name="Total" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OrderDTO" nillable="true" type="tns:OrderDTO" />
+      <xs:complexType name="AddressDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Firstname" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Lastname" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Street" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="AddressDTO" nillable="true" type="tns:AddressDTO" />
+      <xs:complexType name="ArrayOfOrderItemDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderItemDTO" nillable="true" type="tns:OrderItemDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfOrderItemDTO" nillable="true" type="tns:ArrayOfOrderItemDTO" />
+      <xs:complexType name="OrderItemDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OrderId" type="xs:int" />
+          <xs:element minOccurs="0" name="Product" nillable="true" type="tns:ProductDTO" />
+          <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+          <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OrderItemDTO" nillable="true" type="tns:OrderItemDTO" />
+      <xs:complexType name="ArrayOfCustomerDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerDTO" nillable="true" type="tns:CustomerDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfCustomerDTO" nillable="true" type="tns:ArrayOfCustomerDTO" />
+      <xs:complexType name="CustomerDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Activity" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Addresses" nillable="true" type="tns:ArrayOfAddressDTO" />
+          <xs:element minOccurs="0" name="AdminComment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Birthday" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IsAdmin" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ShoppingCart" nillable="true" type="tns:ArrayOfCartItemDTO" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Wishlist" nillable="true" type="tns:ArrayOfCartItemDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CustomerDTO" nillable="true" type="tns:CustomerDTO" />
+      <xs:complexType name="ArrayOfAddressDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="AddressDTO" nillable="true" type="tns:AddressDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfAddressDTO" nillable="true" type="tns:ArrayOfAddressDTO" />
+      <xs:complexType name="ArrayOfCartItemDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CartItemDTO" nillable="true" type="tns:CartItemDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfCartItemDTO" nillable="true" type="tns:ArrayOfCartItemDTO" />
+      <xs:complexType name="CartItemDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Product" nillable="true" type="tns:ProductDTO" />
+          <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CartItemDTO" nillable="true" type="tns:CartItemDTO" />
+      <xs:complexType name="ArrayOfKeywordDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="KeywordDTO" nillable="true" type="tns:KeywordDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfKeywordDTO" nillable="true" type="tns:ArrayOfKeywordDTO" />
+      <xs:complexType name="KeywordDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Count" type="xs:int" />
+          <xs:element minOccurs="0" name="Keyword" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="KeywordDTO" nillable="true" type="tns:KeywordDTO" />
+      <xs:complexType name="ArrayOfBestsellerDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="BestsellerDTO" nillable="true" type="tns:BestsellerDTO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfBestsellerDTO" nillable="true" type="tns:ArrayOfBestsellerDTO" />
+      <xs:complexType name="BestsellerDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Product" nillable="true" type="tns:ProductDTO" />
+          <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="BestsellerDTO" nillable="true" type="tns:BestsellerDTO" />
+      <xs:complexType name="ArrayOfOrderError">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderError" nillable="true" type="tns:OrderError" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfOrderError" nillable="true" type="tns:ArrayOfOrderError" />
+      <xs:complexType name="OrderError">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderId" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="OrderError" nillable="true" type="tns:OrderError" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Catalog" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:simpleType name="AttributeControlType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DropdownList">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="RadioList">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Checkboxes">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="TextBox">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="MultilineTextbox">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Datepicker">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="FileUpload">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">30</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="ColorSquares">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">40</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="AttributeControlType" nillable="true" type="tns:AttributeControlType" />
+      <xs:simpleType name="ProductSortingEnum">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Position" />
+          <xs:enumeration value="NameAsc">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="NameDesc">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PriceAsc">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PriceDesc">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">11</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="CreatedOn">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">15</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="ProductSortingEnum" nillable="true" type="tns:ProductSortingEnum" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfstring">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+      <xs:complexType name="ArrayOfbase64Binary">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="base64Binary" nillable="true" type="xs:base64Binary" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfbase64Binary" nillable="true" type="tns:ArrayOfbase64Binary" />
+      <xs:complexType name="ArrayOfint">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Orders" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Orders" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:simpleType name="ShoppingCartType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ShoppingCart">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Wishlist">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="ShoppingCartType" nillable="true" type="tns:ShoppingCartType" />
+      <xs:simpleType name="OrderStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Pending">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Processing">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Complete">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">30</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Cancelled">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">40</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="OrderStatus" nillable="true" type="tns:OrderStatus" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Payments" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Payments" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:simpleType name="PaymentStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Pending">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Authorized">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Paid">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">30</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PartiallyRefunded">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">35</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Refunded">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">40</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Voided">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">50</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="PaymentStatus" nillable="true" type="tns:PaymentStatus" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Nop.Core.Domain.Shipping" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xs:simpleType name="ShippingStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ShippingNotRequired">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="NotYetShipped">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">20</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="PartiallyShipped">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">25</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Shipped">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">30</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Delivered">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">40</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="ShippingStatus" nillable="true" type="tns:ShippingStatus" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="INopService_CheckLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckLogin" />
+  </wsdl:message>
+  <wsdl:message name="INopService_CheckLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_CheckLoginClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckLoginClient" />
+  </wsdl:message>
+  <wsdl:message name="INopService_CheckLoginClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckLoginClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_RegisterClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterClient" />
+  </wsdl:message>
+  <wsdl:message name="INopService_RegisterClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_FeaturedProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:FeaturedProducts" />
+  </wsdl:message>
+  <wsdl:message name="INopService_FeaturedProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FeaturedProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_RecentlyViewedProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecentlyViewedProducts" />
+  </wsdl:message>
+  <wsdl:message name="INopService_RecentlyViewedProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecentlyViewedProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetMainCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMainCategories" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetMainCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMainCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetSubCategoriesFromParent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubCategoriesFromParent" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetSubCategoriesFromParent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubCategoriesFromParentResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_RemoveFromCart_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFromCart" />
+  </wsdl:message>
+  <wsdl:message name="INopService_RemoveFromCart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFromCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetStoreUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoreUrl" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetStoreUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoreUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_CategoryProductsSortedFiltered_InputMessage">
+    <wsdl:part name="parameters" element="tns:CategoryProductsSortedFiltered" />
+  </wsdl:message>
+  <wsdl:message name="INopService_CategoryProductsSortedFiltered_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CategoryProductsSortedFilteredResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ShippingMethods_InputMessage">
+    <wsdl:part name="parameters" element="tns:ShippingMethods" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ShippingMethods_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ShippingMethodsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_PaymentMethods_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentMethods" />
+  </wsdl:message>
+  <wsdl:message name="INopService_PaymentMethods_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentMethodsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetShippingFees_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetShippingFees" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetShippingFees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetShippingFeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetTaxFees_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaxFees" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetTaxFees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaxFeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ReOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReOrder" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ReOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPdfInvoice_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPdfInvoice" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPdfInvoice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPdfInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAddress" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetAllCountries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCountries" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetAllCountries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCountriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddNewOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewOrder" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddNewOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNewOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddToCart_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddToCart" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddToCart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddToCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetProductById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductById" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetProductById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetAllProductsFromCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductsFromCategory" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetAllProductsFromCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductsFromCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCategoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCategoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetProductsByKeywords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsByKeywords" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetProductsByKeywords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsByKeywordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetUserName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserName" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetUserName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrders" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOrderById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderById" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOrderById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomerList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerList" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomerList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerListResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPendingTotal_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingTotal" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPendingTotal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_EndSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:EndSession" />
+  </wsdl:message>
+  <wsdl:message name="INopService_EndSession_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EndSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCompleteTotal_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompleteTotal" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCompleteTotal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompleteTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCancelledTotal_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCancelledTotal" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCancelledTotal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCancelledTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetStoreName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoreName" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetStoreName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoreNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetRegisteredUsersCountByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegisteredUsersCountByTime" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetRegisteredUsersCountByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegisteredUsersCountByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetTotalSalesByTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalSalesByTime" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetTotalSalesByTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalSalesByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetTotalPendingByReason_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalPendingByReason" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetTotalPendingByReason_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTotalPendingByReasonResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPendingOrdersCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingOrdersCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPendingOrdersCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingOrdersCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrentCartsCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentCartsCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrentCartsCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentCartsCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetWishlistCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWishlistCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetWishlistCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWishlistCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOnlineCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetOnlineCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOnlineCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetRegisteredCustomersCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegisteredCustomersCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetRegisteredCustomersCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRegisteredCustomersCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetVendorsCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVendorsCount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetVendorsCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVendorsCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPopularKeywords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPopularKeywords" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetPopularKeywords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPopularKeywordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestsellersByAmount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestsellersByAmount" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestsellersByAmount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestsellersByAmountResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestsellersByQuantity_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestsellersByQuantity" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestsellersByQuantity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestsellersByQuantityResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrency_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrency" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByEmail" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByUsername" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByFirstname_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByFirstname" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByFirstname_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByFirstnameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByLastname_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByLastname" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByLastname_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByLastnameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByFullname_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByFullname" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByFullname_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByFullnameResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByCompany" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByPhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByPhone" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByPhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByPostalCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByPostalCode" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCustomersByPostalCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersByPostalCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrentCarts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentCarts" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetCurrentCarts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentCartsResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestCustomers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestCustomers" />
+  </wsdl:message>
+  <wsdl:message name="INopService_GetBestCustomers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestCustomersResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ExecuteNonQuery_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteNonQuery" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ExecuteNonQuery_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteNonQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ExecuteScalar_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteScalar" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ExecuteScalar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteScalarResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_DeleteOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrders" />
+  </wsdl:message>
+  <wsdl:message name="INopService_DeleteOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_DeleteOrdersWithoutUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrdersWithoutUser" />
+  </wsdl:message>
+  <wsdl:message name="INopService_DeleteOrdersWithoutUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteOrdersWithoutUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangeOrderStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeOrderStatus" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangeOrderStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeOrderStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangePaymentStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePaymentStatus" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangePaymentStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePaymentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangeShippingStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeShippingStatus" />
+  </wsdl:message>
+  <wsdl:message name="INopService_ChangeShippingStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeShippingStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddCommentToCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCommentToCustomer" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddCommentToCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCommentToCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddOrderNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddOrderNote" />
+  </wsdl:message>
+  <wsdl:message name="INopService_AddOrderNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddOrderNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_UpdateOrderBillingInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderBillingInfo" />
+  </wsdl:message>
+  <wsdl:message name="INopService_UpdateOrderBillingInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderBillingInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_UpdateOrderShippingInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderShippingInfo" />
+  </wsdl:message>
+  <wsdl:message name="INopService_UpdateOrderShippingInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderShippingInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPaid_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPaid" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPaid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPaidResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPaidWithMethod_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPaidWithMethod" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPaidWithMethod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPaidWithMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPending_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPending" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentPending_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentPendingResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentRefund_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentRefund" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrderPaymentRefund_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrderPaymentRefundResponse" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrdersStatusCanceled_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrdersStatusCanceled" />
+  </wsdl:message>
+  <wsdl:message name="INopService_SetOrdersStatusCanceled_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetOrdersStatusCanceledResponse" />
+  </wsdl:message>
+  <wsdl:portType name="INopService">
+    <wsdl:operation name="CheckLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/CheckLogin" message="tns:INopService_CheckLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/CheckLoginResponse" message="tns:INopService_CheckLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckLoginClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/CheckLoginClient" message="tns:INopService_CheckLoginClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/CheckLoginClientResponse" message="tns:INopService_CheckLoginClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/RegisterClient" message="tns:INopService_RegisterClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/RegisterClientResponse" message="tns:INopService_RegisterClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FeaturedProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/FeaturedProducts" message="tns:INopService_FeaturedProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/FeaturedProductsResponse" message="tns:INopService_FeaturedProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecentlyViewedProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/RecentlyViewedProducts" message="tns:INopService_RecentlyViewedProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/RecentlyViewedProductsResponse" message="tns:INopService_RecentlyViewedProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMainCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetMainCategories" message="tns:INopService_GetMainCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetMainCategoriesResponse" message="tns:INopService_GetMainCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCategoriesFromParent">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetSubCategoriesFromParent" message="tns:INopService_GetSubCategoriesFromParent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetSubCategoriesFromParentResponse" message="tns:INopService_GetSubCategoriesFromParent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromCart">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/RemoveFromCart" message="tns:INopService_RemoveFromCart_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/RemoveFromCartResponse" message="tns:INopService_RemoveFromCart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetStoreUrl" message="tns:INopService_GetStoreUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetStoreUrlResponse" message="tns:INopService_GetStoreUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CategoryProductsSortedFiltered">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/CategoryProductsSortedFiltered" message="tns:INopService_CategoryProductsSortedFiltered_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/CategoryProductsSortedFilteredResponse" message="tns:INopService_CategoryProductsSortedFiltered_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShippingMethods">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ShippingMethods" message="tns:INopService_ShippingMethods_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ShippingMethodsResponse" message="tns:INopService_ShippingMethods_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentMethods">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/PaymentMethods" message="tns:INopService_PaymentMethods_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/PaymentMethodsResponse" message="tns:INopService_PaymentMethods_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShippingFees">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetShippingFees" message="tns:INopService_GetShippingFees_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetShippingFeesResponse" message="tns:INopService_GetShippingFees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaxFees">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetTaxFees" message="tns:INopService_GetTaxFees_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetTaxFeesResponse" message="tns:INopService_GetTaxFees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ReOrder" message="tns:INopService_ReOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ReOrderResponse" message="tns:INopService_ReOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPdfInvoice">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetPdfInvoice" message="tns:INopService_GetPdfInvoice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetPdfInvoiceResponse" message="tns:INopService_GetPdfInvoice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/AddAddress" message="tns:INopService_AddAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/AddAddressResponse" message="tns:INopService_AddAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCountries">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetAllCountries" message="tns:INopService_GetAllCountries_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetAllCountriesResponse" message="tns:INopService_GetAllCountries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNewOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/AddNewOrder" message="tns:INopService_AddNewOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/AddNewOrderResponse" message="tns:INopService_AddNewOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddToCart">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/AddToCart" message="tns:INopService_AddToCart_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/AddToCartResponse" message="tns:INopService_AddToCart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetProductById" message="tns:INopService_GetProductById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetProductByIdResponse" message="tns:INopService_GetProductById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProductsFromCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetAllProductsFromCategory" message="tns:INopService_GetAllProductsFromCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetAllProductsFromCategoryResponse" message="tns:INopService_GetAllProductsFromCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCategoryById" message="tns:INopService_GetCategoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCategoryByIdResponse" message="tns:INopService_GetCategoryById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsByKeywords">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetProductsByKeywords" message="tns:INopService_GetProductsByKeywords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetProductsByKeywordsResponse" message="tns:INopService_GetProductsByKeywords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserName">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetUserName" message="tns:INopService_GetUserName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetUserNameResponse" message="tns:INopService_GetUserName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetOrders" message="tns:INopService_GetOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetOrdersResponse" message="tns:INopService_GetOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderById">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetOrderById" message="tns:INopService_GetOrderById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetOrderByIdResponse" message="tns:INopService_GetOrderById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerList">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomerList" message="tns:INopService_GetCustomerList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomerListResponse" message="tns:INopService_GetCustomerList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTotal">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetPendingTotal" message="tns:INopService_GetPendingTotal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetPendingTotalResponse" message="tns:INopService_GetPendingTotal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EndSession">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/EndSession" message="tns:INopService_EndSession_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/EndSessionResponse" message="tns:INopService_EndSession_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompleteTotal">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCompleteTotal" message="tns:INopService_GetCompleteTotal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCompleteTotalResponse" message="tns:INopService_GetCompleteTotal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCancelledTotal">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCancelledTotal" message="tns:INopService_GetCancelledTotal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCancelledTotalResponse" message="tns:INopService_GetCancelledTotal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetStoreName" message="tns:INopService_GetStoreName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetStoreNameResponse" message="tns:INopService_GetStoreName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegisteredUsersCountByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetRegisteredUsersCountByTime" message="tns:INopService_GetRegisteredUsersCountByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetRegisteredUsersCountByTimeResponse" message="tns:INopService_GetRegisteredUsersCountByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalSalesByTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetTotalSalesByTime" message="tns:INopService_GetTotalSalesByTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetTotalSalesByTimeResponse" message="tns:INopService_GetTotalSalesByTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalPendingByReason">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetTotalPendingByReason" message="tns:INopService_GetTotalPendingByReason_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetTotalPendingByReasonResponse" message="tns:INopService_GetTotalPendingByReason_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingOrdersCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetPendingOrdersCount" message="tns:INopService_GetPendingOrdersCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetPendingOrdersCountResponse" message="tns:INopService_GetPendingOrdersCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentCartsCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCurrentCartsCount" message="tns:INopService_GetCurrentCartsCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCurrentCartsCountResponse" message="tns:INopService_GetCurrentCartsCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWishlistCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetWishlistCount" message="tns:INopService_GetWishlistCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetWishlistCountResponse" message="tns:INopService_GetWishlistCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetOnlineCount" message="tns:INopService_GetOnlineCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetOnlineCountResponse" message="tns:INopService_GetOnlineCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegisteredCustomersCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetRegisteredCustomersCount" message="tns:INopService_GetRegisteredCustomersCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetRegisteredCustomersCountResponse" message="tns:INopService_GetRegisteredCustomersCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorsCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetVendorsCount" message="tns:INopService_GetVendorsCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetVendorsCountResponse" message="tns:INopService_GetVendorsCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPopularKeywords">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetPopularKeywords" message="tns:INopService_GetPopularKeywords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetPopularKeywordsResponse" message="tns:INopService_GetPopularKeywords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBestsellersByAmount">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetBestsellersByAmount" message="tns:INopService_GetBestsellersByAmount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetBestsellersByAmountResponse" message="tns:INopService_GetBestsellersByAmount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBestsellersByQuantity">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetBestsellersByQuantity" message="tns:INopService_GetBestsellersByQuantity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetBestsellersByQuantityResponse" message="tns:INopService_GetBestsellersByQuantity_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCurrency" message="tns:INopService_GetCurrency_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCurrencyResponse" message="tns:INopService_GetCurrency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByEmail" message="tns:INopService_GetCustomersByEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByEmailResponse" message="tns:INopService_GetCustomersByEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByUsername" message="tns:INopService_GetCustomersByUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByUsernameResponse" message="tns:INopService_GetCustomersByUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByFirstname">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByFirstname" message="tns:INopService_GetCustomersByFirstname_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByFirstnameResponse" message="tns:INopService_GetCustomersByFirstname_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByLastname">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByLastname" message="tns:INopService_GetCustomersByLastname_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByLastnameResponse" message="tns:INopService_GetCustomersByLastname_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByFullname">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByFullname" message="tns:INopService_GetCustomersByFullname_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByFullnameResponse" message="tns:INopService_GetCustomersByFullname_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByCompany" message="tns:INopService_GetCustomersByCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByCompanyResponse" message="tns:INopService_GetCustomersByCompany_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByPhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByPhone" message="tns:INopService_GetCustomersByPhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByPhoneResponse" message="tns:INopService_GetCustomersByPhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByPostalCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCustomersByPostalCode" message="tns:INopService_GetCustomersByPostalCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCustomersByPostalCodeResponse" message="tns:INopService_GetCustomersByPostalCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentCarts">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetCurrentCarts" message="tns:INopService_GetCurrentCarts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetCurrentCartsResponse" message="tns:INopService_GetCurrentCarts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBestCustomers">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/GetBestCustomers" message="tns:INopService_GetBestCustomers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/GetBestCustomersResponse" message="tns:INopService_GetBestCustomers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteNonQuery">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ExecuteNonQuery" message="tns:INopService_ExecuteNonQuery_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ExecuteNonQueryResponse" message="tns:INopService_ExecuteNonQuery_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteScalar">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ExecuteScalar" message="tns:INopService_ExecuteScalar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ExecuteScalarResponse" message="tns:INopService_ExecuteScalar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/DeleteOrders" message="tns:INopService_DeleteOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/DeleteOrdersResponse" message="tns:INopService_DeleteOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrdersWithoutUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/DeleteOrdersWithoutUser" message="tns:INopService_DeleteOrdersWithoutUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/DeleteOrdersWithoutUserResponse" message="tns:INopService_DeleteOrdersWithoutUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOrderStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ChangeOrderStatus" message="tns:INopService_ChangeOrderStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ChangeOrderStatusResponse" message="tns:INopService_ChangeOrderStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePaymentStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ChangePaymentStatus" message="tns:INopService_ChangePaymentStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ChangePaymentStatusResponse" message="tns:INopService_ChangePaymentStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeShippingStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/ChangeShippingStatus" message="tns:INopService_ChangeShippingStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/ChangeShippingStatusResponse" message="tns:INopService_ChangeShippingStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCommentToCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/AddCommentToCustomer" message="tns:INopService_AddCommentToCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/AddCommentToCustomerResponse" message="tns:INopService_AddCommentToCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOrderNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/AddOrderNote" message="tns:INopService_AddOrderNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/AddOrderNoteResponse" message="tns:INopService_AddOrderNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderBillingInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/UpdateOrderBillingInfo" message="tns:INopService_UpdateOrderBillingInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/UpdateOrderBillingInfoResponse" message="tns:INopService_UpdateOrderBillingInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderShippingInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/UpdateOrderShippingInfo" message="tns:INopService_UpdateOrderShippingInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/UpdateOrderShippingInfoResponse" message="tns:INopService_UpdateOrderShippingInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPaid">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPaid" message="tns:INopService_SetOrderPaymentPaid_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPaidResponse" message="tns:INopService_SetOrderPaymentPaid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPaidWithMethod">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPaidWithMethod" message="tns:INopService_SetOrderPaymentPaidWithMethod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPaidWithMethodResponse" message="tns:INopService_SetOrderPaymentPaidWithMethod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPending">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPending" message="tns:INopService_SetOrderPaymentPending_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentPendingResponse" message="tns:INopService_SetOrderPaymentPending_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentRefund">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentRefund" message="tns:INopService_SetOrderPaymentRefund_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/SetOrderPaymentRefundResponse" message="tns:INopService_SetOrderPaymentRefund_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrdersStatusCanceled">
+      <wsdl:input wsaw:Action="http://tempuri.org/INopService/SetOrdersStatusCanceled" message="tns:INopService_SetOrdersStatusCanceled_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/INopService/SetOrdersStatusCanceledResponse" message="tns:INopService_SetOrdersStatusCanceled_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_INopService" type="tns:INopService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckLogin">
+      <soap:operation soapAction="http://tempuri.org/INopService/CheckLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckLoginClient">
+      <soap:operation soapAction="http://tempuri.org/INopService/CheckLoginClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterClient">
+      <soap:operation soapAction="http://tempuri.org/INopService/RegisterClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FeaturedProducts">
+      <soap:operation soapAction="http://tempuri.org/INopService/FeaturedProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecentlyViewedProducts">
+      <soap:operation soapAction="http://tempuri.org/INopService/RecentlyViewedProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMainCategories">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetMainCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCategoriesFromParent">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetSubCategoriesFromParent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromCart">
+      <soap:operation soapAction="http://tempuri.org/INopService/RemoveFromCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreUrl">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetStoreUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CategoryProductsSortedFiltered">
+      <soap:operation soapAction="http://tempuri.org/INopService/CategoryProductsSortedFiltered" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShippingMethods">
+      <soap:operation soapAction="http://tempuri.org/INopService/ShippingMethods" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentMethods">
+      <soap:operation soapAction="http://tempuri.org/INopService/PaymentMethods" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShippingFees">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetShippingFees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaxFees">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetTaxFees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReOrder">
+      <soap:operation soapAction="http://tempuri.org/INopService/ReOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPdfInvoice">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetPdfInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAddress">
+      <soap:operation soapAction="http://tempuri.org/INopService/AddAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCountries">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetAllCountries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNewOrder">
+      <soap:operation soapAction="http://tempuri.org/INopService/AddNewOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToCart">
+      <soap:operation soapAction="http://tempuri.org/INopService/AddToCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetProductById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProductsFromCategory">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetAllProductsFromCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryById">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCategoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsByKeywords">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetProductsByKeywords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserName">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrders">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderById">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetOrderById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerList">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomerList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTotal">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetPendingTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndSession">
+      <soap:operation soapAction="http://tempuri.org/INopService/EndSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompleteTotal">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCompleteTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCancelledTotal">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCancelledTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoreName">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetStoreName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegisteredUsersCountByTime">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetRegisteredUsersCountByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalSalesByTime">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetTotalSalesByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTotalPendingByReason">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetTotalPendingByReason" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingOrdersCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetPendingOrdersCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentCartsCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCurrentCartsCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWishlistCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetWishlistCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetOnlineCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegisteredCustomersCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetRegisteredCustomersCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVendorsCount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetVendorsCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPopularKeywords">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetPopularKeywords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBestsellersByAmount">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetBestsellersByAmount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBestsellersByQuantity">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetBestsellersByQuantity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByEmail">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByUsername">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByFirstname">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByFirstname" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByLastname">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByLastname" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByFullname">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByFullname" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByCompany">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByPhone">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomersByPostalCode">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCustomersByPostalCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentCarts">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetCurrentCarts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBestCustomers">
+      <soap:operation soapAction="http://tempuri.org/INopService/GetBestCustomers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteNonQuery">
+      <soap:operation soapAction="http://tempuri.org/INopService/ExecuteNonQuery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteScalar">
+      <soap:operation soapAction="http://tempuri.org/INopService/ExecuteScalar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrders">
+      <soap:operation soapAction="http://tempuri.org/INopService/DeleteOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteOrdersWithoutUser">
+      <soap:operation soapAction="http://tempuri.org/INopService/DeleteOrdersWithoutUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOrderStatus">
+      <soap:operation soapAction="http://tempuri.org/INopService/ChangeOrderStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePaymentStatus">
+      <soap:operation soapAction="http://tempuri.org/INopService/ChangePaymentStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeShippingStatus">
+      <soap:operation soapAction="http://tempuri.org/INopService/ChangeShippingStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCommentToCustomer">
+      <soap:operation soapAction="http://tempuri.org/INopService/AddCommentToCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddOrderNote">
+      <soap:operation soapAction="http://tempuri.org/INopService/AddOrderNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderBillingInfo">
+      <soap:operation soapAction="http://tempuri.org/INopService/UpdateOrderBillingInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderShippingInfo">
+      <soap:operation soapAction="http://tempuri.org/INopService/UpdateOrderShippingInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPaid">
+      <soap:operation soapAction="http://tempuri.org/INopService/SetOrderPaymentPaid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPaidWithMethod">
+      <soap:operation soapAction="http://tempuri.org/INopService/SetOrderPaymentPaidWithMethod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentPending">
+      <soap:operation soapAction="http://tempuri.org/INopService/SetOrderPaymentPending" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderPaymentRefund">
+      <soap:operation soapAction="http://tempuri.org/INopService/SetOrderPaymentRefund" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrdersStatusCanceled">
+      <soap:operation soapAction="http://tempuri.org/INopService/SetOrdersStatusCanceled" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NopService">
+    <wsdl:port name="BasicHttpBinding_INopService" binding="tns:BasicHttpBinding_INopService">
+      <soap:address location="http://absampaio-001-site1.myasp.net/Plugins/Misc.WebServices/Remote/NopService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,231 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="NopMobile.WP.Client.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    shell:SystemTray.IsVisible="False">
+
+    
+    
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="NoTitlePanorama">
+            <ContentPresenter>
+            </ContentPresenter>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="False" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton  IconUri="/Images/wallet.png" Text="Checkout" Click="Checkout_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
+  
+    
+
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <StackPanel x:Name="LoadingHolder"   Orientation="Vertical" VerticalAlignment="Center">
+            <ProgressBar  x:Name="LoginProgress" Height="10" IsIndeterminate="True"/>
+            <TextBlock Text="Loading Store.."  HorizontalAlignment="Center" />
+        </StackPanel>
+        
+        <StackPanel x:Name="MainPageHolder" Visibility="Collapsed">
+            <ContentPresenter ContentTemplate="{StaticResource SearchSection}"/>
+
+            <phone:Panorama x:Name="MainPan" TitleTemplate="{StaticResource NoTitlePanorama}" SelectionChanged="Panorama_SelectionChanged">
+
+                <!--Panorama item one-->
+                <phone:PanoramaItem Header="my account">
+                    <StackPanel Margin="15,-42,0,0">
+                        <TextBlock x:Name="CustomerName" Margin="0,0,0,0" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Loading.." Width="402" Height="45" VerticalAlignment="Top"  Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
+                        <StackPanel Margin="0,30,0,0" Tap="Addresses_Tap">
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="402" Height="48"  Text="my addresses" Style="{StaticResource PhoneTextLargeStyle}"/>
+                            <TextBlock Text="where your orders should go" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,0,0">
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="402" Height="48" Tap="MyOrders_Tap" Text="my orders" Style="{StaticResource PhoneTextLargeStyle}"/>
+                            <TextBlock Text="your orders details"  Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,0,0" Tap="Wishlist_Tap">
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="402" Height="48"   Text="my wishlist" Style="{StaticResource PhoneTextLargeStyle}"/>
+                            <TextBlock Text="the products you desire"  Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,0,0">
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="402" Height="48" Tap="Preferences_Tap"  Text="preferences" Style="{StaticResource PhoneTextLargeStyle}"/>
+                            <TextBlock Text="change the settings accordingly"  Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,0,0" Tap="Logout_Tap">
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="402" Height="48"  Text="logout" Style="{StaticResource PhoneTextLargeStyle}"/>
+                            <TextBlock Text="exit store"  Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </phone:PanoramaItem>
+
+                <!--Panorama item two-->
+                <phone:PanoramaItem Header="home">
+                    <ScrollViewer>
+                        <StackPanel>
+                            <TextBlock Text="Featured Products" Margin="12,0,0,12" Style="{StaticResource PhoneTextTitle2Style}"/>
+                            <StackPanel x:Name="ContentPanel" Margin="0,0,0,0">
+                                <ScrollViewer x:Name="Carousel"
+                          Grid.Row="0"
+                          HorizontalScrollBarVisibility="Hidden"
+                          VerticalScrollBarVisibility="Disabled">
+
+                                    <ItemsControl x:Name="FeaturedProducts">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel VerticalAlignment="Top" Width="480" Height="300" Orientation="Horizontal">
+                                                    <StackPanel Width="180" Margin="0,0,20,0">
+                                                        <TextBlock Text="{Binding ProductName}" TextWrapping ="Wrap" Height="90"  Style="{StaticResource PhoneTextTitle3Style}" Tap="ProductDetails_Tap"/>
+                                                        <TextBlock Text="{Binding Description}" TextWrapping ="Wrap" TextTrimming="WordEllipsis" Height="80" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                        <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
+                                                            <TextBlock TextTrimming="WordEllipsis" FontWeight="Bold" Text="Only " FontSize="25"/>
+                                                            <TextBlock  Text="{Binding Value}" TextTrimming="WordEllipsis"  FontSize="25" FontWeight="Bold"/>
+                                                        </StackPanel>
+                                                        <Button Content="Add To Cart" Click="AddToCart_Click"/>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                        <Image Tap="ProductDetails_Tap" Source="{Binding Image}" Width="200" Height="200"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                </ScrollViewer>
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <Button Content="&lt;" x:Name="ButtonLeft"
+                    Grid.Row="0"
+                    FontSize="30"
+                    FontWeight="Bold" Background="LightGray" Foreground="DarkSlateGray"
+                    BorderThickness="0" Margin="0" Padding="0" Height="70" Width="70"
+                    VerticalContentAlignment="Top"
+                    Opacity="0.75" Click="ButtonLeft_Click"                    
+                    />
+                                    <Button Content="&gt;" x:Name="ButtonRight"                    
+                    Grid.Row="0"
+                    FontSize="30"
+                    FontWeight="Bold" Background="LightGray" Foreground="DarkSlateGray"
+                    BorderThickness="0" Margin="0" Padding="0" Height="70" Width="70"
+                     VerticalContentAlignment="Top"
+                    Opacity="0.75" Click="ButtonRight_Click"                    
+                    />
+                                </StackPanel>
+                                
+
+                                
+                            </StackPanel>
+                            
+                            <TextBlock Text="Best-Selling Products" Margin="12,0,0,12" Style="{StaticResource PhoneTextTitle2Style}"/>
+                            <ItemsControl Margin="0,0,0,100" x:Name="BestsellersList">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <toolkit:WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="12,0,0,0" Width="190">
+                                            <Image Tap="ProductDetails_Tap" Source="{Binding Image}" Width="190" Height="190"/>
+                                            <TextBlock Tap="ProductDetails_Tap" Margin="12,12,0,0" TextWrapping="Wrap" Height="50" Text="{Binding ProductName}"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Margin="12,0,0,0" Text="Only " Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                <TextBlock Margin="0,0,0,0" FontWeight="Bold" Text="{Binding Value}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            </StackPanel>
+                                            
+                                            <Button Content="Add To Cart" Click="AddToCart_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                </phone:PanoramaItem>
+
+                <phone:PanoramaItem Header="categories">
+                    <ListBox Margin="0,0,0,100" Name="CategoriesListbox" ItemsSource="{Binding CategoryData}" SelectionChanged="CategoriesListbox_SelectionChanged">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,10,10" Width="200" Height="200">
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Name}" HorizontalAlignment="Center" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                    <Image Margin="0,10,0,0" Source="{Binding Image}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </phone:PanoramaItem>
+                <phone:PanoramaItem Header="shopping cart">
+                    <Grid>
+                        <StackPanel>
+                            <Border Padding="12" BorderThickness="1" BorderBrush="Black">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Text="The cart has "/>
+                                    <TextBlock FontWeight="Bold"  x:Name="CartCount" Text="Loading.."/>
+                                    <TextBlock Text=" items"/>
+                                </StackPanel>
+                            </Border> 
+                        </StackPanel>
+                        <ListBox Margin="0,70,0,170" x:Name="ShoppingCartList" ItemContainerStyle="{StaticResource NoSelectColor}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                        <StackPanel Orientation="Horizontal" Tap="CartProduct_Tap">
+                                            <StackPanel Margin="0,0,12,0" Width="120" Height="120">
+                                                <Border BorderThickness="1" BorderBrush="Black" Width="120" Height="120">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="{Binding Image}"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </StackPanel>
+                                            <StackPanel Width="220" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Id}" Visibility="Collapsed" />
+                                                <TextBlock Text="{Binding ProductName}" TextTrimming="WordEllipsis"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Unit Price: "/>
+                                                    <TextBlock Text="{Binding UnitPrice}"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Quantity: "/>
+                                                    <TextBlock Text="{Binding Quantity}"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Total: "/>
+                                                    <TextBlock Text="{Binding Total}"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock VerticalAlignment="Center" FontSize="48" Text="&#xE10A;" FontFamily="Segoe UI Symbol" Tap="RemoveCart_Tap" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </phone:PanoramaItem>
+            </phone:Panorama>
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingTop="8dp"
+    android:layout_height="48dp">
+<!-- icon -->
+    <ImageView
+        android:id="@+id/item_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/ic_action_av_replay" />
+<!-- title -->
+    <TextView
+        android:id="@+id/item_title"
+        android:textColor="#FFFFFF"
+        android:text="Teste"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/item_icon"
+        android:gravity="center_vertical"
+        android:textSize="18dp" />
+</RelativeLayout>

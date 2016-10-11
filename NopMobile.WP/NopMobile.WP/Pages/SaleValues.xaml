@@ -1,0 +1,116 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="NopMobile.WP.SaleValues"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Landscape"
+    shell:SystemTray.IsVisible="True">
+
+    
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        
+        <!--Pivot Control-->
+        <phone:Pivot Title="SALE VALUES">
+            <!--Pivot item one-->
+            <phone:PivotItem Header="partial orders ">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+
+                        <StackPanel Height="200" Orientation="Horizontal" >
+                            <StackPanel.Background>
+                                <ImageBrush x:Name="UnpaidBrush" ImageSource="/../Images/credit-card.jpg"></ImageBrush>
+                            </StackPanel.Background>
+                            <StackPanel Orientation="Horizontal" Background="#66000000" VerticalAlignment="Bottom" Width="456" >
+                                <TextBlock Text="Unpaid: " Margin="10,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                <TextBlock x:Name="Unpaid" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextTitle2Style}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Height="200" Orientation="Horizontal" >
+                            <StackPanel.Background>
+                                <ImageBrush x:Name="ShippedBrush" ImageSource="/../Images/shipping.jpg"></ImageBrush>
+                            </StackPanel.Background>
+                            <StackPanel Orientation="Horizontal" Background="#66000000" VerticalAlignment="Bottom" Width="456" >
+                                <TextBlock Text="Not Yet Shipped: " Margin="10,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                <TextBlock x:Name="NotShipped" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextLargeStyle}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Height="200" Orientation="Horizontal" >
+                            <StackPanel.Background>
+                                <ImageBrush x:Name="CountBrush" ImageSource="/../Images/store.jpg"></ImageBrush>
+                            </StackPanel.Background>
+                            <StackPanel Orientation="Horizontal" Background="#33000000" VerticalAlignment="Bottom" Width="456" >
+                                <TextBlock Text="Pending Count: " Margin="10,0,0,0" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                <TextBlock x:Name="PendingCount" Margin="0,0,0,0" Text="Loading.." Style="{StaticResource PhoneTextLargeStyle}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    </ScrollViewer>
+            </phone:PivotItem>
+
+            <!--Pivot item two-->
+            <phone:PivotItem Header="bestsellers(quantity)">
+                <StackPanel>
+                    <StackPanel x:Name="LoadingQuantityHolder"  Orientation="Vertical" VerticalAlignment="Center">
+                        <ProgressBar Height="10" IsIndeterminate="True"/>
+                        <TextBlock Text="Loading.."  HorizontalAlignment="Center" Style="{StaticResource PhoneTextTitle3Style}" />
+                    </StackPanel>
+                    <ListBox x:Name="BestsellersQuantity" ItemsSource="{Binding}" Width="450" VirtualizingStackPanel.VirtualizationMode="Recycling">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Background="White" Margin="0,0,20,10" Height="200" Width="200">
+                                    <Image Height="200" Width="200" Source="{Binding Image}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <StackPanel Background="#66000000" Orientation="Vertical">
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding QuantityOrAmount}" Style="{StaticResource PhoneTextTitle1Style}"/>
+                                        <TextBlock VerticalAlignment="Center"  TextWrapping="Wrap" HorizontalAlignment="Center" Text="{Binding ProductName}" Style="{StaticResource PhoneTextTitle3Style}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </phone:PivotItem>
+            <phone:PivotItem Header="bestsellers(amount)">
+                <StackPanel>
+                    <StackPanel x:Name="LoadingAmountHolder"  Orientation="Vertical" VerticalAlignment="Center">
+                        <ProgressBar  Height="10" IsIndeterminate="True"/>
+                        <TextBlock Text="Loading.."  HorizontalAlignment="Center" Style="{StaticResource PhoneTextTitle3Style}" />
+                    </StackPanel>
+                    <ListBox x:Name="BestsellersAmount" ItemsSource="{Binding}" Width="450" VirtualizingStackPanel.VirtualizationMode="Recycling">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Background="White" Margin="0,0,20,10" Height="200" Width="200">
+                                    <Image Height="200" Width="200" Source="{Binding Image}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <StackPanel Background="#66000000" Orientation="Vertical">
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding QuantityOrAmount}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                        <TextBlock VerticalAlignment="Center"  TextWrapping="Wrap" HorizontalAlignment="Center" Text="{Binding ProductName}" Style="{StaticResource PhoneTextTitle3Style}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+    
+</phone:PhoneApplicationPage>

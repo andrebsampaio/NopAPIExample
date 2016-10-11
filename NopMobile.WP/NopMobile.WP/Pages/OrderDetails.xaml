@@ -1,0 +1,106 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="NopMobile.WP.OrderDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        
+    </phone:PhoneApplicationPage.Resources>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <phone:Pivot Title="ORDER DETAILS">
+            <!--Pivot item one-->
+            <phone:PivotItem Header="overview" Margin="10,10,14,18">
+                <ScrollViewer>
+                <StackPanel>
+                        <StackPanel>
+                            <TextBlock Margin="15,0,0,10" Text="Order Details" Style="{StaticResource PhoneTextTitle2Style}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="15,0,0,0">
+                                <toolkit:HubTile Width="150" Height="150" x:Name="ProductTile"/>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Center">
+                                <StackPanel Margin="15,10,0,0" Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Order Date: "/>
+                                    <TextBlock Text="Loading.." x:Name="Date"/>
+                                </StackPanel>
+                                <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Order Total: "/>
+                                        <TextBlock Text="Loading.." x:Name="Total" />
+                                </StackPanel>
+                                
+                                <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Order Status: "/>
+                                        <TextBlock Text="Loading.." x:Name ="OrderStatus"/>
+                                </StackPanel>
+                                <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Shipping Status: "/>
+                                        <TextBlock Text="Loading.." x:Name="ShippingStatusDetails"/>
+                                </StackPanel>
+                                <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Payment: "/>
+                                        <TextBlock Text="Loading.." x:Name="PaymentStatusDetails"/>
+                                </StackPanel>
+                            </StackPanel>
+                    </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Button Width="230" x:Name="ChangeStatus" Content="Change Status" Click="ChangeStatus_Click"/>
+                        <Button Width="230" Content="Delete Order" x:Name="DeleteOrder" Click="DeleteOrder_Click"/>
+                    </StackPanel>
+                        <Button x:Name="AddNote" Click="AddNote_Click" Content="Add Note"/>
+                </StackPanel>
+                <StackPanel>
+                        
+                        <TextBlock Margin="15,0,0,10" Text="Customer Details" Style="{StaticResource PhoneTextTitle2Style}"/>
+                        <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                            <StackPanel>
+                                    <Image Width="150" Height="150" Source="/../Images/customer.jpg"/>
+                            </StackPanel>
+                            <StackPanel  VerticalAlignment="Center" Orientation="Vertical">
+                                <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                                    <TextBlock  FontWeight="Bold" Text="Customer: "/>
+                                        <TextBlock Text="Loading.." x:Name="Email"/>
+                                </StackPanel>
+                                <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Name: "/>
+                                        <TextBlock Text="Loading.." x:Name="Name"/>
+                                </StackPanel>
+                                <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                                    <TextBlock FontWeight="Bold" Text="Address: "/>
+                                        <TextBlock Text="Loading.." x:Name="Address"/>
+                                </StackPanel>
+                                <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                                    <TextBlock Text="Phone" FontWeight="Bold"/>
+                                        <TextBlock Text="Loading.." x:Name="Phone"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                        <Button x:Name="ContactCustomer" Click="ContactCustomer_Click" Content="Contact Customer"/>
+                    </StackPanel>
+                </StackPanel>
+                </ScrollViewer>
+            </phone:PivotItem>
+
+            <!--Pivot item two-->
+            <phone:PivotItem Header="products">
+                <ListBox x:Name="ProductsList" ItemTemplate="{StaticResource ProdOrderTemplate}"/>
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+    
+</phone:PhoneApplicationPage>

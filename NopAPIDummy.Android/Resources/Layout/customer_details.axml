@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:layout_height="48dp">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Name: "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="#858585"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:text="Loading..."
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#858585"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/customerdetailsname" />
+                </LinearLayout>
+                <TextView
+                    android:text="Loading..."
+                    android:gravity="center"
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#858585"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/customerdetailsstatus" />
+            </LinearLayout>
+            <View
+                android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF" />
+            <View
+                android:layout_height="0.5dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF"
+                android:visibility="gone"
+                android:id="@+id/customerdetailsdivider" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:layout_height="48dp">
+                <TextView
+                    android:text="Email: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:text="Loading..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/customerdetailsemail" />
+            </LinearLayout>
+            <View
+                android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:layout_height="48dp">
+                <TextView
+                    android:text="Gender: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:text="Loading..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/customerdetailsgender" />
+            </LinearLayout>
+            <View
+                android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:layout_height="48dp">
+                <TextView
+                    android:text="Birthday: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:text="Loading..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/customerdetailsbirthday" />
+            </LinearLayout>
+            <View
+                android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:layout_height="48dp">
+                <TextView
+                    android:text="Company: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:text="Loading..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/customerdetailscompany" />
+            </LinearLayout>
+            <View
+                android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:layout_height="48dp">
+                <TextView
+                    android:text="Role: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:text="Loading..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/customerdetailsroles" />
+            </LinearLayout>
+            <View
+                android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:layout_height="48dp">
+                <TextView
+                    android:text="Last Activity: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:text="Loading..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/customerdetailsactivity" />
+            </LinearLayout>
+            <View
+                android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:layout_height="48dp">
+                <TextView
+                    android:text="Addresses"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#e2e2e2"
+                android:layout_height="wrap_content"
+                android:id="@+id/customerdetailsadressesholder" />
+            <View
+                android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:layout_height="48dp"
+                android:id="@+id/customerdetailscomments"
+                android:clickable="true">
+                <TextView
+                    android:text="Admin Comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+            <View
+                android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:layout_height="48dp"
+                android:clickable="true"
+                android:id="@+id/customerdetailscart">
+                <TextView
+                    android:text="Shopping Cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:textColor="#858585"
+                    android:drawableRight="@drawable/ic_navigation_next_item_blue"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+            <View
+                android:layout_height="2dp"
+                android:layout_width="match_parent"
+                android:background="#FFFFFF" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:weightSum="1"
+                android:background="#F5f5f5"
+                android:padding="10dp"
+                android:clickable="true"
+                android:id="@+id/customerdetailswishlist"
+                android:layout_height="48dp">
+                <TextView
+                    android:text="Wishlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableRight="@drawable/ic_navigation_next_item_blue"
+                    android:textStyle="bold"
+                    android:textColor="#858585"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+    <LinearLayout
+        android:id="@+id/leftside"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip">
+        <TextView
+            android:id="@+id/product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:textSize="20dip" />
+        <TextView
+            android:id="@+id/orderrowid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:textSize="20dip"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/orderrowid"
+        android:layout_below="@+id/product"
+        android:paddingLeft="5dip"
+        android:singleLine="true"
+        android:gravity="right"
+        android:text="My Store"
+        android:textSize="10sp" />
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/orderrowid"
+        android:layout_below="@+id/product"
+        android:layout_toLeftOf="@+id/store"
+        android:singleLine="true"
+        android:text="Date"
+        android:textSize="10sp" />
+</RelativeLayout>

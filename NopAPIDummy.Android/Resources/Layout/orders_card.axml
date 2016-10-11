@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:descendantFocusability="beforeDescendants">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_card_background"
+        android:descendantFocusability="afterDescendants">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/green_gradient_rect" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:gravity="center_vertical">
+            <ImageView
+                android:src="@drawable/ic_orders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/valuesicon" />
+            <TextView
+                android:id="@+id/orderstitle"
+                android:text="Orders"
+                android:layout_toRightOf="@id/valuesicon"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/lightgray"
+                android:paddingLeft="3dp"
+                android:textStyle="bold"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/pedingorderstitle"
+                android:text="Pending Orders: "
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/pendingorders"
+                android:text="Loading..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/cartstitle"
+                android:text="Carts: "
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/carts"
+                android:text="Loading..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/wishliststitle"
+                android:text="Wishlists: "
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/wishlists"
+                android:text="Loading..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:id="@+id/dashboardlatestorders"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:layout_marginTop="3dp"
+            android:paddingLeft="3dp"
+            android:background="@color/darkgreen"
+            android:text="Latest Orders" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/green_rounded_textview"
+            android:layout_marginBottom="2dp"
+            android:gravity="right"
+            android:clickable="true"
+            android:id="@+id/searchordersgo"
+            android:layout_alignParentBottom="true">
+            <TextView
+                android:id="@+id/orderssearch"
+                android:text="Orders Search"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/ic_action_navigation_next_item"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

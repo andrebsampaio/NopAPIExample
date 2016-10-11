@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AE78BB43-5E6B-441B-A4B2-0BDC6B869FEB}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NopMobile.Android</RootNamespace>
+    <AssemblyName>NopMobile.Android</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidApplication>true</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <AndroidUseLatestPlatformSdk />
+    <TargetFrameworkVersion>v4.1</TargetFrameworkVersion>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions />
+    <MandroidI18n />
+    <JavaMaximumHeapSize />
+    <JavaOptions />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;__ANDROID__</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
+    <Reference Include="OxyPlot, Version=2014.1.308.1, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\oxyplot\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.XamarinAndroid">
+      <HintPath>..\packages\OxyPlot.XamarinAndroid.2014.1.308.1\lib\MonoAndroid\OxyPlot.XamarinAndroid.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\monoandroid\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\monoandroid\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\..\..\..\xamandroidsupportv7appcompat-19.1.0\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\..\..\..\xamandroidsupportv7appcompat-19.1.0\lib\android\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activities\Configurations.cs" />
+    <Compile Include="Activities\SaleValues.cs" />
+    <Compile Include="Activities\SearchCarts.cs" />
+    <Compile Include="Adapters\CartProductsAdapter.cs" />
+    <Compile Include="Adapters\OrderDetailsListAdapter.cs" />
+    <Compile Include="Adapters\SideMenuAdapter.cs" />
+    <Compile Include="Adapters\CartsSearchAdapter.cs" />
+    <Compile Include="Adapters\SeparatedListAdapter.cs" />
+    <Compile Include="Adapters\OrderSearchAdapter.cs" />
+    <Compile Include="Adapters\CustomersSearchAdapter.cs" />
+    <Compile Include="Adapters\CustomersAdapter .cs" />
+    <Compile Include="Activities\SearchCustomers.cs" />
+    <Compile Include="Activities\MiscStatistics.cs" />
+    <Compile Include="Activities\CartProductsList.cs" />
+    <Compile Include="Activities\CustomerDetails.cs" />
+    <Compile Include="Activities\Dashboard.cs" />
+    <Compile Include="Activities\OrderDetails.cs" />
+    <Compile Include="Login.cs" />
+    <Compile Include="Adapters\MenuAdapter.cs" />
+    <Compile Include="Adapters\SaleValuesAdapter.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Activities\SearchOrders.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\Layout\login.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\menu_item_row.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\search_orders.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\simple_spinner_dropdown_item.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\dashboard_actionbar.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\customers_card.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\orders_card.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\stats_card.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\one_line_item_list.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\search_customers.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\customers_search_result.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\orders_search_result.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\stats_list_header.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\stats_list_item.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\misc_stats.axml" />
+    <AndroidResource Include="Resources\Layout\sale_values.axml" />
+    <AndroidResource Include="Resources\Layout\login_url_dropdown_item.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\search_carts.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\cart_list_item.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\configurations.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\numberpicker_dialog.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\dashboard.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\side_menu_options_item.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\order_details.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\order_product_item.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\customer_details.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\cart_products_list.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\layout1.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Values\Strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\Values\Colors.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Menu\popup_menu.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Drawable\rounded_edittext.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Drawable\rounded_edittext_states.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Drawable\rounded_focused.xml" />
+    <AndroidResource Include="Resources\Drawable\round_button_purple.xml" />
+    <AndroidResource Include="Resources\Drawable\http_hint.xml" />
+    <AndroidResource Include="Resources\Drawable\store_url_edittext.xml" />
+    <AndroidResource Include="Resources\Drawable\round_button_blue.xml" />
+    <AndroidResource Include="Resources\Drawable\layer_card_background.xml" />
+    <AndroidResource Include="Resources\Layout\sale_values_card.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Menu\dashboard_action_menu.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_av_replay.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_av_replay.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_av_replay.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_av_replay.png" />
+    <AndroidResource Include="Resources\Drawable\purple_actionbar.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_navigation_drawer.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_navigation_drawer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_navigation_drawer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_navigation_drawer.png" />
+    <AndroidResource Include="Resources\Drawable\blue_rounded_textview.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_navigation_next_item.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_navigation_next_item.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_navigation_next_item.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_navigation_next_item.png" />
+    <AndroidResource Include="Resources\Drawable\blue_gradient_rect.xml" />
+    <AndroidResource Include="Resources\Drawable\green_gradient_rect.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Drawable\green_rounded_textview.xml" />
+    <AndroidResource Include="Resources\Drawable\orange_gradient_rect.xml" />
+    <AndroidResource Include="Resources\Drawable\orange_rounded_textview.xml" />
+    <AndroidResource Include="Resources\Drawable\red_gradient_rect.xml" />
+    <AndroidResource Include="Resources\Drawable\red_rounded_textview.xml" />
+    <AndroidResource Include="Resources\Values\Arrays.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_sale_values.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_sale_values.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_sale_values.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_sale_values.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_orders.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_orders.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_orders.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_orders.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_user.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_user.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_user.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_user.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_stats.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_stats.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_stats.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_stats.png" />
+    <AndroidResource Include="Resources\Drawable\keyword_holder_bg.xml" />
+    <AndroidResource Include="Resources\Values\Themes.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Menu\search_actionbar.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_search.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_search.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_navigation_next_item_blue.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_navigation_next_item_blue.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_navigation_next_item_blue.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_navigation_next_item_blue.png" />
+    <AndroidResource Include="Resources\Drawable\stats_list_item_bg.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Drawable\nav_shadow.9.png" />
+    <AndroidResource Include="Resources\Drawable\transparent_actionbar.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_config.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_current_cart.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_exit.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_help.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_store.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_config.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_current_cart.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_exit.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_help.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_store.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_config.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_current_cart.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_exit.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_help.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_store.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_config.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_current_cart.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_exit.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_help.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_store.png" />
+    <AndroidResource Include="Resources\Drawable\green_progress.xml" />
+    <AndroidResource Include="Resources\Drawable\orange_borders.xml" />
+    <AndroidResource Include="Resources\Drawable\green_borders.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_shipping.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_shipping.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_shipping.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_shipping.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_pay.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_pay.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_pay.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_pay.png" />
+    <AndroidResource Include="Resources\Anim\activity_open_translate.xml" />
+    <AndroidResource Include="Resources\Anim\activity_close_scale.xml" />
+    <AndroidResource Include="Resources\Anim\activity_open_scale.xml" />
+    <AndroidResource Include="Resources\Anim\activity_close_translate.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\NopMobile.AppCore\NopMobile.AppCore.csproj">
+      <Project>{ead8a36b-2417-40f0-a36a-fc1e59c23a67}</Project>
+      <Name>NopMobile.AppCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+     Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
